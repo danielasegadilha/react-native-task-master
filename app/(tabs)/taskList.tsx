@@ -2,14 +2,9 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import TaskItem from '@/components/TaskItem'; // Componente para exibir cada tarefa
 import { useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 
 const TaskList: React.FC = () => {
-    const router = useRouter();
-
-    const handleAddTask = () => {
-        router.push('./newTask.tsx'); // Navega para a tela de nova tarefa
-      };
-
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -21,7 +16,8 @@ const TaskList: React.FC = () => {
         // keyExtractor={(item) => item.id}
         // contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
-      <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
+      <TouchableOpacity style={styles.addButton}>
+        <Link href="/newTask">View user</Link>
         <Text style={styles.addButtonText}>+</Text> {/* Botão para adicionar nova tarefa */}
       </TouchableOpacity>
     </View>
@@ -41,7 +37,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: '#FFFCFB',
     marginBottom: 16,
   },
   addButton: {
@@ -57,7 +53,7 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     fontSize: 30,
-    color: '#FFFFFF',
+    color: '#FFFCFB',
   },
 });
 

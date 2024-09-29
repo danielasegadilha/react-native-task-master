@@ -9,9 +9,16 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      initialRouteName="index"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'dark'].tint,
+        tabBarActiveTintColor: '#05C921',
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#303030', // Cor da barra de navegação inferior
+          paddingBottom: 10, // Padding inferior da barra
+          height: 60,
+          borderTopWidth: 0,
+        },
       }}>
       <Tabs.Screen
         name="taskList" // Nome da tela de tarefas

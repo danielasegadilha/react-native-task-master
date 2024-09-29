@@ -1,14 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions, Pressable } from 'react-native';
+import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente de tema
 
 const screenWidth = Dimensions.get('window').width;
 
 const NewTask: React.FC = () => {
-  const router = useRouter();
-
   return (
     <View style={styles.container}>
       
@@ -55,8 +53,12 @@ const NewTask: React.FC = () => {
 
         {/* Botões de salvar e cancelar */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
-            <Text style={styles.buttonText}>Cancel</Text>
+          <TouchableOpacity style={styles.cancelButton}>
+            <Link href="./index" asChild>
+              <Pressable>
+                  <Text>Cancel</Text>
+                </Pressable>
+              </Link>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.submitButton} onPress={() => {/* Lógica de salvar */}}>
@@ -70,6 +72,7 @@ const NewTask: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 20,
     flex: 1,
     backgroundColor: '#161616', // Fundo preto
   },
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#FFFCFB',
   },
@@ -136,11 +139,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#161616', // Texto escuro no botão cancelar
   },
   buttonTextWhite: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#FFFCFB', // Texto escuro no botão cancelar
   },
 });
