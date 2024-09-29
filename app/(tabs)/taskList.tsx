@@ -1,0 +1,57 @@
+import React from 'react';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
+import TaskItem from '@/components/TaskItem'; // Componente para exibir cada tarefa
+import { useRouter } from 'expo-router';
+
+const TaskList: React.FC = () => {
+    const router = useRouter();
+
+    const handleAddTask = () => {
+        router.push('./newTask.tsx'); // Navega para a tela de nova tarefa
+      };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>TaskMaster</Text> {/* Título da tela */}
+      {/* <FlatList
+        // data={[]} // Aqui você pode conectar o SQLite
+        // renderItem={({ item }) => <TaskItem task={item} />}
+        // keyExtractor={(item) => item.id}
+        // contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
+      /> */}
+      <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
+        <Text style={styles.addButtonText}>+</Text> {/* Botão para adicionar nova tarefa */}
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#1D3D47', // Cor de fundo escura
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 16,
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 40,
+    right: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#4CAF50', // Cor do botão
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+  },
+  addButtonText: {
+    fontSize: 30,
+    color: '#FFFFFF',
+  },
+});
