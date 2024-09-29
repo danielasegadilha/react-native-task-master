@@ -16,7 +16,7 @@ export default function HomeScreen() {
         <Text style={styles.title}>Welcome to TaskMaster!</Text>
         <TouchableOpacity style={styles.taskButton} onPress={() => {/* Lógica de salvar */}}>
           <Link href="/taskList">
-            <Text style={styles.buttonTextWhite}>See my tasks</Text>
+            <Text style={styles.buttonTextWhite}>Enter</Text>
           </Link>
         </TouchableOpacity>
       </View>

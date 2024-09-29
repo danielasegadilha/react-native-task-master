@@ -54,7 +54,7 @@ const NewTask: React.FC = () => {
         {/* Botões de salvar e cancelar */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.cancelButton}>
-            <Link href="./index" asChild>
+            <Link href="/taskList" asChild>
               <Pressable>
                   <Text>Cancel</Text>
                 </Pressable>
