@@ -9,13 +9,13 @@ const NewTask: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Nova Tarefa</Text>
+      <Text style={styles.title}>Add task</Text>
 
       {/* Task title */}
       <Text style={styles.label}>Task Title</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o título da tarefa"
+        placeholder="Enter task title"
         placeholderTextColor="#AAB8C2"
       />
 
@@ -23,7 +23,7 @@ const NewTask: React.FC = () => {
       <Text style={styles.label}>Description</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite a descrição da tarefa"
+        placeholder="Enter task description"
         placeholderTextColor="#AAB8C2"
       />
 
@@ -31,7 +31,7 @@ const NewTask: React.FC = () => {
       <Text style={styles.label}>Deadline</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite o prazo (ex: 2024-09-30)"
+        placeholder="YYYY-MM-DD"
         placeholderTextColor="#AAB8C2"
       />
 
@@ -49,11 +49,11 @@ const NewTask: React.FC = () => {
       {/* Botões de salvar e cancelar */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.saveButton} onPress={() => {/* Lógica de salvar */}}>
-          <Text style={styles.buttonText}>Salvar</Text>
+          <Text style={styles.buttonText}>submit</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
-          <Text style={styles.buttonText}>Cancelar</Text>
+          <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -112,16 +112,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#FF5722', // Cor laranja para o botão de cancelar
+    backgroundColor: '#FFFFFF', // Cor laranja para o botão de cancelar
     paddingVertical: 15,
     paddingHorizontal: 40,
+    color: '#000000',
     borderRadius: 10,
     alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 
