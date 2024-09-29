@@ -12,7 +12,9 @@ const TaskList: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>TaskMaster</Text> {/* Título da tela */}
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>TaskMaster</Text> {/* Título da tela */}
+      </View>
       {/* <FlatList
         // data={[]} // Aqui você pode conectar o SQLite
         // renderItem={({ item }) => <TaskItem task={item} />}
@@ -29,8 +31,12 @@ const TaskList: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#1D3D47', // Cor de fundo escura
+    backgroundColor: '#161616', // Fundo preto
+  },
+  titleContainer: {
+    backgroundColor: '#303030', // Fundo do título
+    paddingVertical: 15,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
@@ -45,13 +51,14 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#4CAF50', // Cor do botão
+    backgroundColor: '#05C921', // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 5,
   },
   addButtonText: {
     fontSize: 30,
     color: '#FFFFFF',
   },
 });
+
+export default TaskList;

@@ -71,7 +71,6 @@ const NewTask: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 20,
     backgroundColor: '#161616', // Fundo preto
   },
   containerTask: {

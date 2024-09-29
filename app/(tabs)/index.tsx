@@ -7,7 +7,7 @@ export default function HomeScreen() {
     const router = useRouter();
   
     const navigateToTaskList = () => {
-      router.push('./taskList.tsx'); // Navega para a tela de lista de tarefas
+      router.push('./taskList'); // Navega para a tela de lista de tarefas
     };
   
     return (

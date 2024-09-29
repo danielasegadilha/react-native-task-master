@@ -10,11 +10,11 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'dark'].tint,
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="TaskList" // Nome da tela de tarefas
+        name="taskList" // Nome da tela de tarefas
         options={{
           title: 'Task List',
           tabBarIcon: ({ color, focused }) => (
