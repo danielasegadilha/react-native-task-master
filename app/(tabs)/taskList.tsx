@@ -11,7 +11,12 @@ const TaskList: React.FC = () => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Task Master</Text>
       </View>
-
+      {/* <FlatList
+        // data={[]} // Aqui você pode conectar o SQLite
+        // renderItem={({ item }) => <TaskItem task={item} />}
+        // keyExtractor={(item) => item.id}
+        // contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
+      /> */}
       <TouchableOpacity style={styles.addButton}>
         <Link href="/newTask" asChild>
           <Pressable>
@@ -32,13 +37,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     backgroundColor: '#303030', // Fundo do título
     paddingVertical: 15,
-    marginBottom: 20,
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#FFFCFB',
-    marginBottom: 16,
   },
   input: {
     height: 50,
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addButtonText: {
-    fontSize: 30,
+    fontSize: 40,
     color: '#FFFCFB',
   },
 });
