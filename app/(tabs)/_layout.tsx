@@ -14,18 +14,27 @@ export default function TabLayout() {
         tabBarActiveTintColor: '#05C921',
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#303030', // Cor da barra de navegação inferior
+          backgroundColor: '#161616', // Cor da barra de navegação inferior
           paddingBottom: 10, // Padding inferior da barra
           height: 60,
           borderTopWidth: 0,
         },
       }}>
+         <Tabs.Screen
+        name="index" // Nome da tela de "Home"
+        options={{
+          title: 'Home', // Texto exibido na barra de navegação
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={'home'} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="taskList" // Nome da tela de tarefas
         options={{
           title: 'Task List',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'list' : 'list-outline'} color={color} />
+            <TabBarIcon name={'list-circle'} color={color} />
           ),
         }}
       />
@@ -34,7 +43,7 @@ export default function TabLayout() {
         options={{
           title: 'New Task',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'add-circle' : 'add-circle-outline'} color={color} />
+            <TabBarIcon name={'add-circle'} color={color} />
           ),
         }}
       />

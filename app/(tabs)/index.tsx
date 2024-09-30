@@ -5,12 +5,6 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 're
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
-    const router = useRouter();
-  
-    const navigateToTaskList = () => {
-      router.push('./taskList'); // Navega para a tela de lista de tarefas
-    };
-  
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Welcome to TaskMaster!</Text>
