@@ -3,6 +3,6 @@ export interface Task {
     title: string;
     description: string;
     deadline: string; // você pode usar Date se preferir manipular como data
-    priority: 'Low' | 'Medium' | 'High'; // Definindo prioridades como um tipo literal
-    status: 'In Progress' | 'Completed' | 'Pending'; // Definindo status como um tipo literal
+    priority: 'Low' | 'Medium' | 'High' | null; 
+    status: 0 | 1; // Definindo status como um tipo literal
   }

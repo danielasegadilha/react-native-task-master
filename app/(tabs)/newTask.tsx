@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions, Pressable } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
+import { Task } from '@/constants/Task';
 import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente de tema
+import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 
 const screenWidth = Dimensions.get('window').width;
 
-const NewTask: React.FC = () => {
+export default function NewTask() {
+  
+  const taskDatabase = useTasksDatabase()
+
+
+  const [id, setId] = useState<Number>();
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [deadline, setDeadline] = useState<string>('');
+  const [priority, setPriority] = useState<'Low' | 'Medium' | 'High' | null>(null); 
+  const [status, setStatus] = useState<0 | 1>(0);
+
+  async function createTask() { 
+    const newTask: Omit<Task, 'id' | 'status'> = {
+      title,
+      description,
+      deadline,
+      priority,
+    }
+
+    try {
+      const response = await taskDatabase.create(newTask)
+    } catch (error) {
+      throw error
+    }
+
+   }
+    
   return (
     <View style={styles.container}>
       
@@ -21,7 +50,9 @@ const NewTask: React.FC = () => {
         <TextInput
           style={styles.input}
           placeholder="Enter task title"
-          placeholderTextColor="#AAB8C2"
+          placeholderTextColor="#AAB8C2" 
+          onChangeText={setTitle}
+          value={title}
         />
 
         {/* Description */}
@@ -30,6 +61,8 @@ const NewTask: React.FC = () => {
           style={styles.input}
           placeholder="Enter task description"
           placeholderTextColor="#AAB8C2"
+          onChangeText={setDescription}
+          value={description}
         />
 
         {/* Deadline */}
@@ -38,6 +71,8 @@ const NewTask: React.FC = () => {
           style={styles.input}
           placeholder="YYYY-MM-DD"
           placeholderTextColor="#AAB8C2"
+          onChangeText={setDeadline}
+          value={deadline}
         />
 
         {/* Priority (Dropdown) */}
@@ -61,14 +96,14 @@ const NewTask: React.FC = () => {
               </Link>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.submitButton} onPress={() => {/* Lógica de salvar */}}>
+          <TouchableOpacity style={styles.submitButton} onPress={(createTask)}>
             <Text style={styles.buttonTextWhite}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -147,5 +182,3 @@ const styles = StyleSheet.create({
     color: '#FFFCFB', // Texto escuro no botão cancelar
   },
 });
-
-export default NewTask;
