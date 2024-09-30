@@ -21,6 +21,8 @@ export function useTasksDatabase() {
       })
     } catch (error) {
       throw error
+    } finally {
+      await statement.finalizeAsync()
     }
   }
 
