@@ -80,7 +80,8 @@ export default function NewTask() {
         <View style={styles.dropdownContainer}>
           <Picker style={styles.dropdown}
           selectedValue={priority}
-          onValueChange={(itemValue) => setPriority(itemValue)}>
+          onValueChange={(itemValue) => setPriority(itemValue)}
+          >
             <Picker.Item label="Select Priority" value="" />
             <Picker.Item label="Low" value="Low" />
             <Picker.Item label="Medium" value="Medium" />

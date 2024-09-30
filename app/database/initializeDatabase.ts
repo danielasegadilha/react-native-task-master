@@ -9,8 +9,6 @@ export async function initializeDatabase(database: SQLiteDatabase) {
             task_deadline TEXT
             task_priority TEXT CHECK (task_priority IN ('low', 'medium', 'high') OR task_priority IS NULL)
             task_status INTEGER NOT NULL DEFAULT 0
-        )
+        );
     `)
-
-
 }

@@ -10,7 +10,6 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <SQLiteProvider databaseName={'database.db'} onInit={initializeDatabase}>
       <Tabs
         initialRouteName="index"
         screenOptions={{
@@ -41,16 +40,17 @@ export default function TabLayout() {
             ),
           }}
         />
-        <Tabs.Screen
-          name="newTask" // Nome da tela de nova tarefa
-          options={{
-            title: 'New Task',
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name={'add-circle'} color={color} />
-            ),
-          }}
-        />
+        <SQLiteProvider databaseName="database.db" onInit={initializeDatabase}>
+          <Tabs.Screen
+            name="newTask" // Nome da tela de nova tarefa
+            options={{
+              title: 'New Task',
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon name={'add-circle'} color={color} />
+              ),
+            }}
+          />
+        </SQLiteProvider>
       </Tabs>
-    </SQLiteProvider>
   );
 }
