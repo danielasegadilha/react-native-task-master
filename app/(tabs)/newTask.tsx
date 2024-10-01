@@ -17,7 +17,7 @@ export default function NewTask() {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [deadline, setDeadline] = useState<string>('');
-  const [priority, setPriority] = useState<'Low' | 'Medium' | 'High' | null>(null); 
+  const [priority, setPriority] = useState<string>(''); 
   const [status, setStatus] = useState<0 | 1>(0);
 
   async function createTask() { 

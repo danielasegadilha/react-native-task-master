@@ -9,7 +9,7 @@ export function useTasksDatabase() {
   async function create(task: Omit<Task, "id" | "status">) {
 
     const statement = await database.prepareAsync(
-      "INSERT INTO tasks (task_title, task_description, task_deadline, task_priotiry) VALUES ($title, $description, $deadline, $priority)"
+      "INSERT INTO tasks (task_title, task_description, task_deadline, task_priority) VALUES ($title, $description, $deadline, $priority)"
     )
 
     try {

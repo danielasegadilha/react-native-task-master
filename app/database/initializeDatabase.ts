@@ -12,7 +12,7 @@ export async function initializeDatabase() {
             task_title TEXT NOT NULL,
             task_description TEXT,
             task_deadline TEXT,
-            task_priority TEXT CHECK (task_priority IN ('low', 'medium', 'high') OR task_priority IS NULL),
+            task_priority TEXT,
             task_status INTEGER NOT NULL DEFAULT 0
           );
         `);

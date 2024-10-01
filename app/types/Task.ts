@@ -3,6 +3,6 @@ export interface Task {
     title: string;
     description: string;
     deadline: string; 
-    priority: 'Low' | 'Medium' | 'High' | null; 
+    priority: string; 
     status: 0 | 1; 
   }
