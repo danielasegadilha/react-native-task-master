@@ -6,6 +6,10 @@ export function useTasksDatabase() {
 
   const database = useSQLiteContext()
 
+  if (!database) {
+    throw new Error("Banco de dados não está disponível.");
+  }
+
   async function create(task: Omit<Task, "id" | "status">) {
 
     const statement = await database.prepareAsync(

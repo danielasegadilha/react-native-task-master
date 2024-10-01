@@ -14,7 +14,7 @@ export default function NewTask() {
 
 
   const [id, setId] = useState<Number>();
-  const [title, setTitle] = useState<string>('');
+  const [title, setTitle] = useState<string>('Nova');
   const [description, setDescription] = useState<string>('');
   const [deadline, setDeadline] = useState<string>('');
   const [priority, setPriority] = useState<'Low' | 'Medium' | 'High' | null>(null); 
