@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions, Pressable } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
-import { Task } from '@/constants/Task';
+import { Task } from '../types/Task';
 import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente de tema
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 
@@ -14,7 +14,7 @@ export default function NewTask() {
 
 
   const [id, setId] = useState<Number>();
-  const [title, setTitle] = useState<string>('Nova');
+  const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [deadline, setDeadline] = useState<string>('');
   const [priority, setPriority] = useState<'Low' | 'Medium' | 'High' | null>(null); 

@@ -1,22 +1,39 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable, FlatList } from 'react-native';
 import TaskItem from '@/components/TaskItem'; // Componente para exibir cada tarefa
-import { useRouter } from 'expo-router';
 import { Link } from 'expo-router';
+import { useTasksDatabase } from '@/hooks/useTaskDatabase';
+import { Task } from '../types/Task';
 
-const TaskList: React.FC = () => {
+export default function TaskList() {
+
+  const taskDatabase = useTasksDatabase()
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  async function listTask() {
+    try {
+      const response = await taskDatabase.getAll()
+      setTasks(response)
+    } catch (error) {
+      console.log("Empty list")
+    }
+
+  }
+
+  useEffect(() => {listTask()}, [tasks])
+
   return (
     <View style={styles.container}>
 
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Task Master</Text>
       </View>
-      {/* <FlatList
-        // data={[]} // Aqui você pode conectar o SQLite
-        // renderItem={({ item }) => <TaskItem task={item} />}
-        // keyExtractor={(item) => item.id}
-        // contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
-      /> */}
+      <FlatList
+        data={tasks} 
+        keyExtractor={(item: { id: number; }) => String(item.id)}
+        renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
+        contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
+      />
       <TouchableOpacity style={styles.addButton}>
         <Link href="/newTask" asChild>
           <Pressable>
@@ -70,5 +87,3 @@ const styles = StyleSheet.create({
     color: '#FFFCFB',
   },
 });
-
-export default TaskList;

@@ -26,10 +26,10 @@ export function useTasksDatabase() {
     }
   }
 
-  async function get() {
+  async function getAll() {
     try {
       const query = "SELECT * FROM tasks"
-      const response = await database.getAllAsync(query)
+      const response = await database.getAllAsync<Task>(query)
 
       return response
 
@@ -39,5 +39,5 @@ export function useTasksDatabase() {
     
   }
 
-  return { create }
+  return { create, getAll }
 }
