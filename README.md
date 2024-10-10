@@ -4,7 +4,10 @@
 
 TaskMaster is a to-do list app built with React Native. It utilizes SQLite for storing created tasks, enabling users to efficiently add, edit, and delete tasks within the app.
 
-<img src="/assets/imgs/TaskMaster.png" width="500">
+<div align="center">
+  <img src="/assets/imgs/TaskMaster.png" width="500">
+</div>
+
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
