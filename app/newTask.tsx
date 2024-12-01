@@ -8,6 +8,8 @@ import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import DefaultInput from '@/components/DefaultInput';
 import { ThemedText } from '@/components/ThemedText';
 import DefaultDropdown from '@/components/DefaultDropdown';
+import SimpleButton from '@/components/button/SimpleButton';
+import GradientButton from '@/components/button/GradientButton';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -45,10 +47,16 @@ export default function NewTask() {
       <View style={styles.titleContainer}>
         <ThemedText type="title">New task</ThemedText>
       </View>
-      <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput>
-      <DefaultInput label={'Description'} placeholder={'Enter task description'}></DefaultInput>
-      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-      <DefaultInput label={'Deadline'} placeholder={'YYYY-MM-DD'}></DefaultInput>
+      <View style={styles.inputsContainer}>
+        <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput>
+        <DefaultInput label={'Description'} placeholder={'Enter task description'}></DefaultInput>
+        <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
+        <DefaultInput label={'Deadline'} placeholder={'YYYY-MM-DD'}></DefaultInput>
+      </View>
+      <View style={styles.buttonContainer}>
+        <SimpleButton text={'Cancel'} href={'/(tabs)'}></SimpleButton>
+        <GradientButton text={'Create'} href={'/(tabs)'}></GradientButton>
+      </View>
     </View>
   );
 }
@@ -60,6 +68,9 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginBottom: 32,
+  },
+  inputsContainer: {
+    marginBottom: 24
   },
   buttonContainer: {
     flexDirection: 'row', // Coloca os botões lado a lado

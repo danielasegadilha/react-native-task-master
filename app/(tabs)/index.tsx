@@ -5,8 +5,8 @@ import { Link, useRouter } from "expo-router";
 import React from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
 import NewTask from "../newTask";
-import NewTaskButton from "@/components/NewTaskButton";
-import DefaultButton from "@/components/DefaultButton";
+import NewTaskButton from "@/components/button/NewTaskButton";
+import DefaultButton from "@/components/button/DefaultButton";
 
 const screenWidth = Dimensions.get('window').width;
 

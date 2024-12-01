@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Dimensions } from 'react-native';
 import { Link, useRouter } from 'expo-router';
-import { ThemedText } from './ThemedText';
+import { ThemedText } from '../ThemedText';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const screenWidth = Dimensions.get('window').width;

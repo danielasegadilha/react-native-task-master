@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { Picker } from '@react-native-picker/picker';
+
 
 interface DefaultDropdownProps {
   label: string;
@@ -10,7 +11,7 @@ interface DefaultDropdownProps {
 }
 
 export default function DefaultDropdown({ label, placeholder, options }: DefaultDropdownProps) {
-  const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState('');
 
   return (
     <View style={styles.container}>
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     borderRadius: 8,
     overflow: 'hidden', // Para garantir que o `borderRadius` seja aplicado ao conteúdo do Picker
+    width: '100%',
   },
   dropdown: {
     height: 50,
@@ -53,9 +55,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 14,
     color: '#A0A0A1',
+    width: '100%',
   },
   placeholder: {
-    fontFamily: 'Inter', // Ou o fontFamily desejado
+    fontFamily: 'Inter_400Regular', // Ou o fontFamily desejado
     fontSize: 14,
     color: '#A0A0A1', // Cor do placeholder
   },

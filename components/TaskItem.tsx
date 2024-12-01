@@ -4,7 +4,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Task } from '@/constants/Task'
 import { ThemedText } from './ThemedText';
 import { LinearGradient } from 'expo-linear-gradient';
-import BackgroundGradient from './BackgroundGradient';
+import BackgroundGradient from './background/BackgroundGradientHorizontal';
+import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
 
 
 interface TaskItemProps {
@@ -15,13 +16,13 @@ interface TaskItemProps {
 export default function TaskItem() {
   return (
     <View>
-      <BackgroundGradient style={styles.taskContainer}>
+      <BackgroundGradientHorizontal style={styles.taskContainer}>
         <View style={styles.contentContainer}>
             {/* Quadrado ao lado do texto */}
             <View style={styles.square} />
             <ThemedText type="defaultMedium">Teste</ThemedText>
           </View>
-        </BackgroundGradient>
+        </BackgroundGradientHorizontal>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import DayPeriodControl from "@/components/DayPeriodControl";
-import DefaultButton from "@/components/DefaultButton";
+import DefaultButton from "@/components/button/DefaultButton";
 import TaskItem from "@/components/TaskItem";
 import { ThemedText } from "@/components/ThemedText";
 import { Link, useRouter } from "expo-router";

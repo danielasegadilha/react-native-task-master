@@ -23,7 +23,7 @@ export function ThemedText({
       style={[
         { color, fontFamily: 'Inter' },
         type === 'defaultWhite' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#B2B2B1' },
-        type === 'defaultGray' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#D1D1D6' },
+        type === 'defaultGray' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'defaultMedium' && { fontFamily: 'Inter_500Medium', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'defaultBoldWhite' && { fontFamily: 'Inter_700Bold', fontSize: 16, lineHeight: 24, color: '#D1D3D5' },
         type === 'defaultBold' && { fontFamily: 'Inter_900Black', fontSize: 16, lineHeight: 24, color: '#2B323A' },
