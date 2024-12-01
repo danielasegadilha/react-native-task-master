@@ -1,28 +1,58 @@
 // src/components/TaskItem.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Task } from '@/constants/Task'
 import { ThemedText } from './ThemedText';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradient from './background/BackgroundGradientHorizontal';
 import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
+import Entypo from '@expo/vector-icons/build/Entypo';
+// import IconCheck from '@/assets/icons/IconCheck.svg';
 
 
 interface TaskItemProps {
-    task: Task; // Aqui você usa a interface Task
+    // task: Task; // Aqui você usa a interface Task
+    colors: string[];
 }
 
 // export default function TaskItem({ task }: TaskItemProps) {
-export default function TaskItem() {
+export default function TaskItem({colors: initialColors}: TaskItemProps) {
+
+  const [colors, setColors] = useState(initialColors);
+  const [isDefaultColors, setIsDefaultColors] = useState(true); // Controla o estado do ciclo
+
+  const handleSquarePress = () => {
+    if (isDefaultColors) {
+      setColors(['#BDFF9B', '#62CC7B']); // Define as cores verdes
+    } else {
+      setColors(initialColors); // Retorna às cores iniciais
+    }
+    setIsDefaultColors(!isDefaultColors); // Alterna o estado
+  };;
+
+  const dynamicSquareStyle = {
+    backgroundColor: isDefaultColors ? '#2B323A' : '#FFFFF1',
+    borderWidth: isDefaultColors ? 0 : 1.2,
+    borderColor: isDefaultColors ? 'transparent' : '#D1D1D6',
+  };
+
+  const dynamicCheckStyle = {
+    display: isDefaultColors ? 'none' as 'none' : 'flex' as 'flex',
+  };
+
   return (
     <View>
-      <BackgroundGradientHorizontal style={styles.taskContainer}>
+      <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
         <View style={styles.contentContainer}>
-            {/* Quadrado ao lado do texto */}
-            <View style={styles.square} />
-            <ThemedText type="defaultMedium">Teste</ThemedText>
-          </View>
-        </BackgroundGradientHorizontal>
+          <Pressable
+            onPress={handleSquarePress}
+            style={[styles.squareBase, dynamicSquareStyle]}
+          />
+          {/* <IconCheck width={32} height={32} fill="#0CA402" /> */}
+          <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
+          <ThemedText type="defaultMedium">Teste</ThemedText>
+        </View>
+      </BackgroundGradientHorizontal>
     </View>
   );
 }
@@ -33,16 +63,21 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginBottom: 4,
     borderRadius: 8,
+    position: "relative"
   },
   contentContainer: {
     flexDirection: 'row', // Coloca os componentes lado a lado
     alignItems: 'center',
   },
-  square: {
+  icon: {
+    left: -4, // Move para a esquerda (valores negativos)
+    top: -8,
+    position: "absolute"
+  },
+  squareBase: {
     height: 24,
     width: 24,
-    backgroundColor: '#2B323A',
     borderRadius: 4,
     marginRight: 16,
-  }
+  },
 });

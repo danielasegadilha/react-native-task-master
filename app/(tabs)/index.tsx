@@ -43,18 +43,18 @@ export default function HomeScreen() {
           <ThemedText type="small">6 Tasks</ThemedText>
           <DayPeriodControl text={'Morning'} />
         </View>
-        <TaskItem />
-        <TaskItem />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Afternoon'} />
         </View>
-        <TaskItem />
-        <TaskItem />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Evening'} />
         </View>
-        <TaskItem />
-        <TaskItem />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
       </View>
       <NewTaskButton/>
     </View>
