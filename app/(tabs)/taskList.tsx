@@ -5,6 +5,9 @@ import { Link } from 'expo-router';
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import { Task } from '../types/Task';
 import NewTask from '@/components/NewTaskButton';
+import DayPeriodControl from '@/components/DayPeriodControl';
+import { ThemedText } from '@/components/ThemedText';
+import DefaultButton from '@/components/DefaultButton';
 
 export default function TaskList() {
 
@@ -31,7 +34,25 @@ export default function TaskList() {
         renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
-      <View style={styles.content}>
+      <View style={styles.contentButton}>
+        <DefaultButton text={'Reminder'} iconName={'pin-outline'}></DefaultButton>
+        <DefaultButton text={'Progress'} iconName={'trending-up'}></DefaultButton>
+      </View>
+      <View style={styles.contentTasks}>
+        <View style={styles.contentHeader}>
+          <ThemedText type="small">6 Tasks</ThemedText>
+          <DayPeriodControl text={'Morning'} />
+        </View>
+        <TaskItem />
+        <TaskItem />
+        <View style={styles.contentHeaderEnd}>
+          <DayPeriodControl text={'Afternoon'} />
+        </View>
+        <TaskItem />
+        <TaskItem />
+        <View style={styles.contentHeaderEnd}>
+          <DayPeriodControl text={'Evening'} />
+        </View>
         <TaskItem />
         <TaskItem />
       </View>
@@ -47,7 +68,22 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#161616', // Fundo preto
   },
-  content: {
+  contentButton: {
+    flexDirection: 'row',
+    marginBottom: 16,
+    justifyContent: 'space-between',
+  },
+  contentTasks: {
     flexGrow: 1, // Garante que o conteúdo ocupe o espaço restante
   },
+  contentHeader: {
+    flexDirection: 'row', // Distribui os itens horizontalmente
+    paddingVertical: 8,
+    justifyContent: 'space-between'
+  },
+  contentHeaderEnd: {
+    flexDirection: 'row', // Distribui os itens horizontalmente
+    paddingVertical: 8,
+    justifyContent: 'flex-end'
+  }
 });
