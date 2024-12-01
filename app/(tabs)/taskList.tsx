@@ -35,8 +35,8 @@ export default function TaskList() {
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
       <View style={styles.contentButton}>
-        <DefaultButton text={'Reminder'} iconName={'pin-outline'}></DefaultButton>
-        <DefaultButton text={'Progress'} iconName={'trending-up'}></DefaultButton>
+        <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/taskList'}></DefaultButton>
+        <DefaultButton text={'Progress'} iconName={'trending-up'} href={'/taskList'}></DefaultButton>
       </View>
       <View style={styles.contentTasks}>
         <View style={styles.contentHeader}>
