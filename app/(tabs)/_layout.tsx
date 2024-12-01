@@ -4,6 +4,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { SQLiteProvider } from 'expo-sqlite';
 // import { initializeDatabase } from '../database/initializeDatabase';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
+import { Entypo } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -27,7 +28,7 @@ export default function TabLayout() {
         name="index" // Nome da tela de "Home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <TabBarIcon name={'home'} color={color} />,
+          tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color}/>,
         }}
       />
       <Tabs.Screen

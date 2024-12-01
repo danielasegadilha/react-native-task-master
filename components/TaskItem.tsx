@@ -13,7 +13,7 @@ interface TaskItemProps {
 // export default function TaskItem({ task }: TaskItemProps) {
 export default function TaskItem() {
   return (
-    <View style={styles.taskContainer}>
+    <View>
       <LinearGradient
       colors={['#FFDF95', '#FECD71', '#FCA521']} // Cores do gradiente
       start={{ x: 0, y: 0 }} // Início do gradiente (0% no topo)

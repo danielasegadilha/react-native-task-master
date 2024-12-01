@@ -4,6 +4,7 @@ import TaskItem from '@/components/TaskItem'; // Componente para exibir cada tar
 import { Link } from 'expo-router';
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import { Task } from '../types/Task';
+import NewTask from '@/components/NewTaskButton';
 
 export default function TaskList() {
 
@@ -30,15 +31,11 @@ export default function TaskList() {
         renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
-      <TaskItem/>
-      <TaskItem/>
-      <TouchableOpacity style={styles.addButton}>
-        <Link href="/newTask" asChild>
-          <Pressable>
-            <Text style={styles.addButtonText}>+</Text>
-          </Pressable>
-        </Link>
-      </TouchableOpacity>
+      <View style={styles.content}>
+        <TaskItem />
+        <TaskItem />
+      </View>
+      <NewTask />
     </View>
   );
 }
@@ -46,32 +43,11 @@ export default function TaskList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 20,
+    position: 'relative',
+    padding: 20,
     backgroundColor: '#161616', // Fundo preto
   },
-  input: {
-    height: 50,
-    backgroundColor: '#303030',
-    borderWidth: 1,
-    borderRadius: 50,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    color: '#FFFCFB',
-    marginBottom: 20,
-  },
-  addButton: {
-    position: 'absolute',
-    bottom: 40,
-    right: 40,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#05C921', // Cor do botão
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  addButtonText: {
-    fontSize: 40,
-    color: '#FFFCFB',
+  content: {
+    flexGrow: 1, // Garante que o conteúdo ocupe o espaço restante
   },
 });
