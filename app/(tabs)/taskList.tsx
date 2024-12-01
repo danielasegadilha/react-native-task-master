@@ -7,33 +7,31 @@ import { Task } from '../types/Task';
 
 export default function TaskList() {
 
-  const taskDatabase = useTasksDatabase()
-  const [tasks, setTasks] = useState<Task[]>([])
+  // const taskDatabase = useTasksDatabase()
+  // const [tasks, setTasks] = useState<Task[]>([])
 
-  async function listTask() {
-    try {
-      const response = await taskDatabase.getAll()
-      setTasks(response)
-    } catch (error) {
-      console.log("Empty list")
-    }
+  // async function listTask() {
+  //   try {
+  //     const response = await taskDatabase.getAll()
+  //     setTasks(response)
+  //   } catch (error) {
+  //     console.log("Empty list")
+  //   }
 
-  }
+  // }
 
-  useEffect(() => {listTask()}, [tasks])
+  // useEffect(() => {listTask()}, [tasks])
 
   return (
     <View style={styles.container}>
-
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Task Master</Text>
-      </View>
-      <FlatList
+      {/* <FlatList
         data={tasks} 
         keyExtractor={(item: { id: number; }) => String(item.id)}
         renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
-      />
+      /> */}
+      <TaskItem/>
+      <TaskItem/>
       <TouchableOpacity style={styles.addButton}>
         <Link href="/newTask" asChild>
           <Pressable>
@@ -50,16 +48,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     backgroundColor: '#161616', // Fundo preto
-  },
-  titleContainer: {
-    backgroundColor: '#303030', // Fundo do título
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#FFFCFB',
   },
   input: {
     height: 50,

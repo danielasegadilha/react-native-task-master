@@ -28,19 +28,19 @@ export default function HomeScreen() {
     title: {
       fontSize: 24,
       fontWeight: 'bold',
-      color: '#FFFCFB',
+      color: '#D1D3D5',
       marginBottom: 20,
     },
     taskButton: {
-      backgroundColor: '#05C921', // Verde claro para o botão de salvar
+      backgroundColor: '#21272D', // Verde claro para o botão de salvar
       justifyContent: 'center',
       height: 40,
-      borderRadius: 50,
+      borderRadius: 16,
       width: (screenWidth / 2) - 25,
       alignItems: 'center',
     },
     buttonTextWhite: {
       fontSize: 16,
-      color: '#FFFCFB', // Texto escuro no botão cancelar
+      color: '#FFFFF1', // Texto escuro no botão cancelar
     },
   });

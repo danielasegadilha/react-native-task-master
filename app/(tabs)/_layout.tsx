@@ -2,19 +2,19 @@ import { Slot, Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { SQLiteProvider } from 'expo-sqlite';
-import { initializeDatabase } from '../database/initializeDatabase';
+// import { initializeDatabase } from '../database/initializeDatabase';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <SQLiteProvider databaseName="database.db">
-      {/* <Slot></Slot> */}
+
+
       <Tabs
         initialRouteName="index"
         screenOptions={{
-        tabBarActiveTintColor: '#05C921',
+        tabBarActiveTintColor: '#CDCDCD',
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#161616',
@@ -45,6 +45,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-    </SQLiteProvider>
+
   );
 }
