@@ -10,31 +10,31 @@ const screenWidth = Dimensions.get('window').width;
 
 export default function NewTask() {
   
-  const taskDatabase = useTasksDatabase()
+  // const taskDatabase = useTasksDatabase()
 
 
-  const [id, setId] = useState<Number>();
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [deadline, setDeadline] = useState<string>('');
-  const [priority, setPriority] = useState<string>(''); 
-  const [status, setStatus] = useState<0 | 1>(0);
+  // const [id, setId] = useState<Number>();
+  // const [title, setTitle] = useState<string>('');
+  // const [description, setDescription] = useState<string>('');
+  // const [deadline, setDeadline] = useState<string>('');
+  // const [priority, setPriority] = useState<string>(''); 
+  // const [status, setStatus] = useState<0 | 1>(0);
 
   async function createTask() { 
-    const newTask: Omit<Task, 'id' | 'status'> = {
-      title,
-      description,
-      deadline,
-      priority,
-    }
+  //   const newTask: Omit<Task, 'id' | 'status'> = {
+  //     title,
+  //     description,
+  //     deadline,
+  //     priority,
+  //   }
 
-    try {
-      const response = await taskDatabase.create(newTask)
-    } catch (error) {
-      throw error
-    }
+  //   try {
+  //     const response = await taskDatabase.create(newTask)
+  //   } catch (error) {
+  //     throw error
+  //   }
 
-   }
+  //  }
     
   return (
     <View style={styles.container}>
@@ -51,8 +51,8 @@ export default function NewTask() {
           style={styles.input}
           placeholder="Enter task title"
           placeholderTextColor="#AAB8C2" 
-          onChangeText={setTitle}
-          value={title}
+          // onChangeText={setTitle}
+          // value={title}
         />
 
         {/* Description */}
@@ -61,8 +61,8 @@ export default function NewTask() {
           style={styles.input}
           placeholder="Enter task description"
           placeholderTextColor="#AAB8C2"
-          onChangeText={setDescription}
-          value={description}
+          // onChangeText={setDescription}
+          // value={description}
         />
 
         {/* Deadline */}
@@ -71,16 +71,16 @@ export default function NewTask() {
           style={styles.input}
           placeholder="YYYY-MM-DD"
           placeholderTextColor="#AAB8C2"
-          onChangeText={setDeadline}
-          value={deadline}
+          // onChangeText={setDeadline}
+          // value={deadline}
         />
 
         {/* Priority (Dropdown) */}
         <Text style={styles.label}>Priority</Text>
         <View style={styles.dropdownContainer}>
           <Picker style={styles.dropdown}
-          selectedValue={priority}
-          onValueChange={(itemValue) => setPriority(itemValue)}
+          // selectedValue={priority}
+          // onValueChange={(itemValue) => setPriority(itemValue)}
           >
             <Picker.Item label="Select Priority" value="" />
             <Picker.Item label="low" value="low" />
@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#FFFCFB', // Texto escuro no botão cancelar
   },
-});
+})};

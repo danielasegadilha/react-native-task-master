@@ -23,7 +23,7 @@ export default function TaskItem() {
       <View style={styles.contentContainer}>
           {/* Quadrado ao lado do texto */}
           <View style={styles.square} />
-          <ThemedText type="defaultBold">Teste</ThemedText>
+          <ThemedText type="defaultMedium">Teste</ThemedText>
         </View>
       </LinearGradient>
     </View>

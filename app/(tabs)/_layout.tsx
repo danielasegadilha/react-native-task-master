@@ -4,7 +4,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { SQLiteProvider } from 'expo-sqlite';
 // import { initializeDatabase } from '../database/initializeDatabase';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -20,7 +20,6 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: '#161616',
           paddingBottom: 10,
-          height: 60,
           borderTopWidth: 0,
         },
       }}>
@@ -28,14 +27,14 @@ export default function TabLayout() {
         name="index" // Nome da tela de "Home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color}/>,
+          tabBarIcon: ({ color }) => <MaterialIcons name="home" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="taskList" // Nome da tela de tarefas
         options={{
           title: 'Task List',
-          tabBarIcon: ({ color }) => <TabBarIcon name={'list-circle'} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons name="checklist-rtl" size={24} color={color} />,
         }}
       />
       <Tabs.Screen

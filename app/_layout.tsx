@@ -1,15 +1,10 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import {
-  useFonts,
-  Roboto_400Regular,
-  Roboto_500Medium,
-  Roboto_700Bold,
-  Roboto_900Black,
-} from '@expo-google-fonts/roboto';
+import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import AppLoading from 'expo-app-loading';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import React from 'react';
@@ -20,10 +15,11 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Roboto_700Bold,
-    Roboto_900Black,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_900Black,
   });
 
   useEffect(() => {
@@ -33,7 +29,7 @@ export default function RootLayout() {
   }, [loaded]);
 
   if (!loaded) {
-    return null;
+    return <AppLoading />;
   }
 
   return (
