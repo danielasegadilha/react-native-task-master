@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable, FlatList } from 'react-native';
-import TaskItem from '@/components/TaskItem'; // Componente para exibir cada tarefa
-import { Link } from 'expo-router';
-import { useTasksDatabase } from '@/hooks/useTaskDatabase';
-import { Task } from '../types/Task';
-import NewTask from '@/components/NewTaskButton';
-import DayPeriodControl from '@/components/DayPeriodControl';
-import { ThemedText } from '@/components/ThemedText';
-import DefaultButton from '@/components/DefaultButton';
+import DayPeriodControl from "@/components/DayPeriodControl";
+import DefaultButton from "@/components/DefaultButton";
+import TaskItem from "@/components/TaskItem";
+import { ThemedText } from "@/components/ThemedText";
+import { Link, useRouter } from "expo-router";
+import React from 'react';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
+import NewTask from "../newTask";
 
-export default function TaskList() {
+const screenWidth = Dimensions.get('window').width;
 
-  // const taskDatabase = useTasksDatabase()
+export default function BulletScreen() {
+    // const taskDatabase = useTasksDatabase()
   // const [tasks, setTasks] = useState<Task[]>([])
 
   // async function listTask() {
@@ -35,8 +34,7 @@ export default function TaskList() {
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
       <View style={styles.contentButton}>
-        <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/taskList'}></DefaultButton>
-        <DefaultButton text={'Progress'} iconName={'trending-up'} href={'/taskList'}></DefaultButton>
+ 
       </View>
       <View style={styles.contentTasks}>
         <View style={styles.contentHeader}>
@@ -56,7 +54,7 @@ export default function TaskList() {
         <TaskItem />
         <TaskItem />
       </View>
-      <NewTask />
+
     </View>
   );
 }

@@ -11,8 +11,8 @@ interface DayPeriodControlProps {
 export default function DayPeriodControl({ text}: DayPeriodControlProps) {
     return (
         <View style={styles.container}>
-        <ThemedText type="smallSemiBold">{text}</ThemedText>
-        <View style={styles.line} />
+            <ThemedText type="smallSemiBold">{text}</ThemedText>
+            <View style={styles.line} />
         </View>
     );
 }

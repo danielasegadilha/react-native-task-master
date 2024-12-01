@@ -5,11 +5,11 @@ import { Link } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather';
 
 
-export default function NewTask() {
+export default function NewTaskButton() {
   return (
     <View>
       <TouchableOpacity style={styles.addButton}>
-        <Link href="/newTask" asChild>
+        <Link href="../newTask" asChild>
           <Pressable>
           <Feather name="plus" size={24} color="#FFFFF1" />
           </Pressable>

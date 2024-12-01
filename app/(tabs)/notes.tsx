@@ -1,16 +1,15 @@
 import DayPeriodControl from "@/components/DayPeriodControl";
+import DefaultButton from "@/components/DefaultButton";
 import TaskItem from "@/components/TaskItem";
 import { ThemedText } from "@/components/ThemedText";
 import { Link, useRouter } from "expo-router";
 import React from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
 import NewTask from "../newTask";
-import NewTaskButton from "@/components/NewTaskButton";
-import DefaultButton from "@/components/DefaultButton";
 
 const screenWidth = Dimensions.get('window').width;
 
-export default function HomeScreen() {
+export default function NotesScreen() {
     // const taskDatabase = useTasksDatabase()
   // const [tasks, setTasks] = useState<Task[]>([])
 
@@ -35,8 +34,7 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
       <View style={styles.contentButton}>
-        <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
-        <DefaultButton text={'Progress'} iconName={'trending-up'} href={'/(tabs)'}></DefaultButton>
+
       </View>
       <View style={styles.contentTasks}>
         <View style={styles.contentHeader}>
@@ -56,7 +54,7 @@ export default function HomeScreen() {
         <TaskItem />
         <TaskItem />
       </View>
-      <NewTaskButton/>
+
     </View>
   );
 }

@@ -31,17 +31,17 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="taskList" // Nome da tela de tarefas
+        name="notes" // Nome da tela de tarefas
         options={{
-          title: 'Task List',
-          tabBarIcon: ({ color }) => <MaterialIcons name="checklist-rtl" size={24} color={color} />,
+          title: 'Notes',
+          tabBarIcon: ({ color }) => <MaterialIcons name="edit-note" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="newTask" // Nome da tela de nova tarefa
+        name="bullet" // Nome da tela de tarefas
         options={{
-          title: 'New Task',
-          tabBarIcon: ({ color }) => <TabBarIcon name={'add-circle'} color={color} />,
+          title: 'Bullet',
+          tabBarIcon: ({ color }) => <MaterialIcons name="list-alt" size={24} color={color} />,
         }}
       />
     </Tabs>

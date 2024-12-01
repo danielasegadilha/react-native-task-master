@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Task } from '@/constants/Task'
 import { ThemedText } from './ThemedText';
 import { LinearGradient } from 'expo-linear-gradient';
+import BackgroundGradient from './BackgroundGradient';
 
 
 interface TaskItemProps {
@@ -14,18 +15,13 @@ interface TaskItemProps {
 export default function TaskItem() {
   return (
     <View>
-      <LinearGradient
-      colors={['#FFDF95', '#FECD71', '#FCA521']} // Cores do gradiente
-      start={{ x: 0, y: 0 }} // Início do gradiente (0% no topo)
-      end={{ x: 1, y: 0 }} // Fim do gradiente (100% na parte inferior)
-      style={styles.taskContainer} // Estilo do container que vai ter o gradiente
-    >
-      <View style={styles.contentContainer}>
-          {/* Quadrado ao lado do texto */}
-          <View style={styles.square} />
-          <ThemedText type="defaultMedium">Teste</ThemedText>
-        </View>
-      </LinearGradient>
+      <BackgroundGradient style={styles.taskContainer}>
+        <View style={styles.contentContainer}>
+            {/* Quadrado ao lado do texto */}
+            <View style={styles.square} />
+            <ThemedText type="defaultMedium">Teste</ThemedText>
+          </View>
+        </BackgroundGradient>
     </View>
   );
 }

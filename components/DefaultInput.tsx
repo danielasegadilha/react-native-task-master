@@ -8,16 +8,16 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const screenWidth = Dimensions.get('window').width;
 
 interface DefaultButtonProps {
-    text: string;  // Texto dinâmico para o botão
+    label: string;  // Texto dinâmico para o botão
     placeholder: string;  // Nome do ícone dinâmico (baseado no Feather ou outro pacote)
 }
 
-export default function DefaultInput({ text, placeholder }: DefaultButtonProps) {
+export default function DefaultInput({ label, placeholder }: DefaultButtonProps) {
     return (
         <View style={styles.containerTask}>
 
             {/* Task title */}
-            <Text style={styles.label}>{text}</Text>
+            <Text style={styles.label}>{label}</Text>
             <TextInput
             style={styles.input}
             placeholder={placeholder}
