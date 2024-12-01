@@ -83,9 +83,9 @@ export default function NewTask() {
           onValueChange={(itemValue) => setPriority(itemValue)}
           >
             <Picker.Item label="Select Priority" value="" />
-            <Picker.Item label="Low" value="Low" />
-            <Picker.Item label="Medium" value="Medium" />
-            <Picker.Item label="High" value="High" />
+            <Picker.Item label="low" value="low" />
+            <Picker.Item label="medium" value="medium" />
+            <Picker.Item label="high" value="high" />
           </Picker>
         </View>
 
