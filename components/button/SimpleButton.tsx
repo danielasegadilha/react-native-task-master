@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     width: ((screenWidth - 52) / 2),
-    backgroundColor: '#21272D',  // Cor do botão
+    backgroundColor: '#272E34',  // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',
   },

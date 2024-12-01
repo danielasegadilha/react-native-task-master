@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     padding: 20,
-    backgroundColor: '#161616', // Fundo preto
+    backgroundColor: '#1A1F25', // Fundo preto
   },
   contentButton: {
     flexDirection: 'row',
