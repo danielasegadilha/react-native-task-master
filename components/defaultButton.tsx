@@ -8,7 +8,7 @@ const screenWidth = Dimensions.get('window').width;
 
 interface DefaultButtonProps {
     text: string;
-    href: "/(tabs)" | "/newTask";
+    href: "/(tabs)" | "/newTask" | "./(tabs)/notes" | "./(tabs)/bullet";
     iconName: "pin-outline" | "trending-up";
   }
   

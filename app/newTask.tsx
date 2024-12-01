@@ -7,6 +7,7 @@ import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente d
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import DefaultInput from '@/components/DefaultInput';
 import { ThemedText } from '@/components/ThemedText';
+import DefaultDropdown from '@/components/DefaultDropdown';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -22,7 +23,7 @@ export default function NewTask() {
   // const [priority, setPriority] = useState<string>(''); 
   // const [status, setStatus] = useState<0 | 1>(0);
 
-  async function createTask() { 
+  // async function createTask() { 
   //   const newTask: Omit<Task, 'id' | 'status'> = {
   //     title,
   //     description,
@@ -44,38 +45,25 @@ export default function NewTask() {
       <View style={styles.titleContainer}>
         <ThemedText type="title">New task</ThemedText>
       </View>
-      {/* <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput> */}
+      <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput>
+      <DefaultInput label={'Description'} placeholder={'Enter task description'}></DefaultInput>
+      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
+      <DefaultInput label={'Deadline'} placeholder={'YYYY-MM-DD'}></DefaultInput>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
-    flex: 1,
-    backgroundColor: '#161616', // Fundo preto
+    padding: 20,
+    flex: 1, 
   },
   titleContainer: {
-    backgroundColor: '#303030', // Fundo do título
-    paddingVertical: 15,
-    marginBottom: 20,
-    alignItems: 'center',
-  },
-  dropdownContainer: {
-    borderRadius: 50,
-    overflow: 'hidden', // Para garantir que o `borderRadius` seja aplicado ao conteúdo do Picker
-    backgroundColor: '#333333',
-    marginBottom: 20,
-  },
-  dropdown: {
-    height: 50,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    color: '#AAB8C2',
+    marginBottom: 32,
   },
   buttonContainer: {
     flexDirection: 'row', // Coloca os botões lado a lado
     justifyContent: 'space-between',
     
   },
-})};
+});

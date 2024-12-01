@@ -33,7 +33,7 @@ export function ThemedText({
         type === 'smallXBoldWhite' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#EFF7FF' },
         type === 'smallXBoldBlack' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#2B323A' },
         type === 'largeBlack' && { fontFamily: 'Inter_900Black', fontSize: 20, lineHeight: 24, color: '#2B323A' },
-        type === 'title' && { fontFamily: 'Inter_700Bold', fontSize: 24, lineHeight: 24, color: '#D1D3D5' },
+        type === 'title' && { fontFamily: 'Inter_700Bold', fontSize: 20, lineHeight: 24, color: '#D1D3D5' },
         style,
       ]}
       {...rest}

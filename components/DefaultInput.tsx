@@ -1,62 +1,67 @@
-// src/components/TaskItem.tsx
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, Dimensions, TextInput } from 'react-native';
-import { Link } from 'expo-router';
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet, TextInputProps, Platform } from 'react-native';
 import { ThemedText } from './ThemedText';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const screenWidth = Dimensions.get('window').width;
-
-interface DefaultButtonProps {
-    label: string;  // Texto dinâmico para o botão
-    placeholder: string;  // Nome do ícone dinâmico (baseado no Feather ou outro pacote)
+interface DefaultInputProps extends TextInputProps {
+  label: string;
+  placeholder: string;
 }
 
-export default function DefaultInput({ label, placeholder }: DefaultButtonProps) {
-    return (
-        <View style={styles.containerTask}>
+export default function DefaultInput({ label, placeholder, ...rest }: DefaultInputProps) {
+  const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState('');
 
-            {/* Task title */}
-            <Text style={styles.label}>{label}</Text>
-            <TextInput
-            style={styles.input}
-            placeholder={placeholder}
-            placeholderTextColor="#AAB8C2" 
-            // onChangeText={setTitle}
-            // value={title}
-            />
-        </View>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    containerTask: {
-        paddingHorizontal: 20,
-      },
-      titleContainer: {
-        backgroundColor: '#303030', // Fundo do título
-        paddingVertical: 15,
-        marginBottom: 20,
-        alignItems: 'center',
-      },
-      title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#FFFCFB',
-      },
-      label: {
-        fontSize: 16,
-        color: '#FFFCFB',
-        marginBottom: 5,
-      },
-      input: {
-        height: 50,
-        backgroundColor: '#303030',
-        borderWidth: 1,
-        borderRadius: 50,
-        paddingHorizontal: 15,
-        fontSize: 16,
-        color: '#FFFCFB',
-        marginBottom: 20,
-      },
-  });
+  const showPlaceholder = !isFocused && !value;
+
+  return (
+    <View style={styles.container}>
+      <ThemedText type="smallSemiBold" style={styles.label}>
+        {label}
+      </ThemedText>
+      <View>
+        {showPlaceholder && (
+          <ThemedText type="small" style={styles.placeholder}>
+            {placeholder}
+          </ThemedText>
+        )}
+        <TextInput
+          style={[
+            styles.input,
+            isFocused && styles.inputFocused,
+          ]}
+          value={value}
+          onChangeText={setValue}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          {...rest}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+  },
+  label: {
+    marginBottom: 5,
+  },
+  input: {
+    height: 50,
+    backgroundColor: '#21272D',
+    borderColor: 'transparent',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    color: '#FFFCFB',
+  },
+  inputFocused: {
+    borderWidth: 0,
+  },
+  placeholder: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+  },
+});
