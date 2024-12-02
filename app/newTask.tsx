@@ -7,7 +7,7 @@ import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente d
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import DefaultInput from '@/components/DefaultInput';
 import { ThemedText } from '@/components/ThemedText';
-import DefaultDropdown from '@/components/DefaultDropdown';
+import DefaultDropdown from '@/components/dropdown/DefaultDropdown';
 import SimpleButton from '@/components/button/SimpleButton';
 import GradientButton from '@/components/button/GradientButton';
 

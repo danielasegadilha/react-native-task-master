@@ -8,6 +8,8 @@ import NewTask from "../newTask";
 import NewTaskButton from "@/components/button/NewTaskButton";
 import DefaultButton from "@/components/button/DefaultButton";
 import WeekDayButton from "@/components/button/WeekDayButton";
+import MiniDropdown from "@/components/dropdown/MiniDropdown";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -35,6 +37,10 @@ export default function HomeScreen() {
         renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
+      <View style={styles.contentHeader}>
+        <Ionicons name="settings-outline" size={20} color="#D1D3D5" />
+        <MiniDropdown placeholder={"Per day"} options={["Per week", "Per month"]}></MiniDropdown>
+      </View>
       <WeekDayButton></WeekDayButton>
       <View style={styles.contentButton}>
         <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
