@@ -6,7 +6,7 @@ import React from 'react';
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'defaultWhite' | 'defaultGray' | 'defaultMedium' | 'defaultBoldWhite' | 'defaultBold' | 'small' | 'smallSemiBold' | 'smallXBold' | 'smallXBoldWhite' | 'smallXBoldBlack' | 'largeBlack' | 'title';
+  type?: 'defaultWhite' | 'defaultGray' | 'defaultMedium' | 'defaultBoldWhite' | 'defaultBold' | 'small' | 'smallSemiBold' | 'smallXBold' | 'smallXBoldBlack'| 'smallXBoldWhite' | 'smallXBoldBlack' | 'largeBold' | 'title';
 };
 
 export function ThemedText({
@@ -29,10 +29,10 @@ export function ThemedText({
         type === 'defaultBold' && { fontFamily: 'Inter_900Black', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'small' && { fontFamily: 'Inter_400Regular', fontSize: 14, lineHeight: 24, color: '#A0A0A1' },
         type === 'smallSemiBold' && { fontFamily: 'Inter_600SemiBold', fontSize: 14, lineHeight: 24, color: '#B4B7BA' },
-        type === 'smallXBold' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#D1D1D6' },
+        type === 'smallXBold' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 8, color: '#D1D1D6' },
+        type === 'smallXBoldBlack' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 14, color: '#2B323A' },
         type === 'smallXBoldWhite' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#EFF7FF' },
-        type === 'smallXBoldBlack' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#2B323A' },
-        type === 'largeBlack' && { fontFamily: 'Inter_900Black', fontSize: 20, lineHeight: 24, color: '#2B323A' },
+        type === 'largeBold' && { fontFamily: 'Inter_700Bold', fontSize: 20, lineHeight: 24, color: '#2B323A' },
         type === 'title' && { fontFamily: 'Inter_700Bold', fontSize: 20, lineHeight: 24, color: '#D1D3D5' },
         style,
       ]}

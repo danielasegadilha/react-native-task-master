@@ -7,6 +7,7 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 're
 import NewTask from "../newTask";
 import NewTaskButton from "@/components/button/NewTaskButton";
 import DefaultButton from "@/components/button/DefaultButton";
+import WeekDayButton from "@/components/button/WeekDayButton";
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -34,6 +35,7 @@ export default function HomeScreen() {
         renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
+      <WeekDayButton></WeekDayButton>
       <View style={styles.contentButton}>
         <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
         <DefaultButton text={'Progress'} iconName={'trending-up'} href={'/(tabs)'}></DefaultButton>
@@ -53,8 +55,7 @@ export default function HomeScreen() {
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Evening'} />
         </View>
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        
       </View>
       <NewTaskButton/>
     </View>

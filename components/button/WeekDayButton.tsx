@@ -2,43 +2,59 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import Feather from '@expo/vector-icons/Feather';
+import BackgroundGradientVertical from '../background/BackgroundGradientVertical';
+import { ThemedText } from '../ThemedText';
 
 export default function WeekDayButton() {
   const router = useRouter();
 
+  // Obtendo a data atual
+  const currentDate = new Date();
+
+  // Formatar o dia (adicionando 0 à esquerda se necessário)
+  const dayOfMonth = currentDate.getDate().toString().padStart(2, '0'); // Adiciona o zero à esquerda
+
+  // Formatar o mês (primeira letra maiúscula, sem ponto)
+  const month = currentDate.toLocaleString('default', { month: 'short' }).replace('.', '');
+  const formattedMonth = month.charAt(0).toUpperCase() + month.slice(1); // Primeira letra maiúscula
+
+  const title = "Today"; // Pode ajustar conforme necessário
+
   const handlePress = () => {
-    router.push({pathname: '../newTask'}); // Navegação programática para a nova tarefa
+    router.push({ pathname: '../newTask' }); // Navegação programática para a nova tarefa
   };
 
   return (
-    <View>
-      <Pressable style={styles.addButton} onPress={handlePress}>
-        <Feather name="plus" size={24} color="#FFFFF1" />
-      </Pressable>
+    <View style={styles.container}>
+      <ThemedText type="smallSemiBold" style={styles.title}>{title}</ThemedText>
+      <BackgroundGradientVertical style={styles.circleContainer}>
+        <Pressable style={styles.circle} onPress={handlePress}>
+          <ThemedText type="smallXBoldBlack">{formattedMonth}</ThemedText>  {/* Exibe o mês com primeira letra maiúscula */}
+          <ThemedText type="largeBold">{dayOfMonth}</ThemedText>  {/* Exibe o dia com zero à esquerda se necessário */}
+        </Pressable>
+      </BackgroundGradientVertical>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  addButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 0,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#21272D', // Cor do botão
+  container: {
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#E8E8E8',
-    shadowOffset: {
-      width: 0,
-      height: 0, // Sombra abaixo
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 8, // Suavidade da sombra
-    // Sombra para Android
-    elevation: 10,
+    marginBottom: 20,
+  },
+  title: {
+    paddingBottom: 4,
+  },
+  circleContainer: {
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  circle: {
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
