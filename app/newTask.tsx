@@ -51,7 +51,7 @@ export default function NewTask() {
         <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput>
         <DefaultInput label={'Description'} placeholder={'Enter task description'}></DefaultInput>
         <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-        <DefaultInput label={'Deadline'} placeholder={'YYYY-MM-DD'}></DefaultInput>
+        <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
       </View>
       <View style={styles.buttonContainer}>
         <SimpleButton text={'Cancel'} href={'/(tabs)'}></SimpleButton>
