@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, Pressable, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, Pressable, Dimensions, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
 import Entypo from '@expo/vector-icons/build/Entypo';
@@ -7,6 +7,7 @@ import { ThemedText } from './ThemedText';
 import SimpleButton from '@/components/button/SimpleButton';
 import DefaultInput from './DefaultInput';
 import DefaultDropdown from './dropdown/DefaultDropdown';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
 
 interface ModalTaskItemProps {
     taskTitle: string;
@@ -17,8 +18,26 @@ interface ModalTaskItemProps {
 }
   
 export default function ModalTaskItem({ taskTitle, taskDescription, colors, isModalVisible, toggleModal }: ModalTaskItemProps) {
-    console.log('isModalVisible:', isModalVisible);
-    
+    const translateY = new Animated.Value(0);
+
+    const onGestureEvent = Animated.event(
+        [{ nativeEvent: { translationY: translateY } }],
+        { useNativeDriver: true }
+    );
+
+    const onHandlerStateChange = (event: any) => {
+        if (event.nativeEvent.state === State.END) {
+            if (event.nativeEvent.translationY > 100) {
+                toggleModal(); // Fecha o modal
+            } else {
+                Animated.spring(translateY, {
+                    toValue: 0,
+                    useNativeDriver: true,
+                }).start(); // Volta à posição original
+            }
+        }
+    };
+
     return (
         <Modal
         visible={isModalVisible}
@@ -28,32 +47,46 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
         >
         <View style={styles.modalOverlay}>
             <LinearGradient
-                    colors={['#0A150A', 'rgba(26, 31, 37, 0.5)']}
+                    colors={['rgba(10, 21, 10, 0.6)', 'rgba(26, 31, 37, 0.2)']}
                     style={styles.gradientBackground}
                 />
-            <View style={styles.modalContainer}>
-            {/* <ThemedText type="title" style={styles.modalTitle}>{taskTitle}</ThemedText> */}
-            <View style={styles.titleContainer}>
-                <BackgroundGradientHorizontal style={styles.title}>
-                    <ThemedText type="defaultSemiBold" >Teste</ThemedText>
-                </BackgroundGradientHorizontal>
-            </View>
-            {/* <View style={styles.modalActions}>
-                <SimpleButton text="Close" onPress={toggleModal} />
-            </View> */}
-            <View style={styles.taskInfoContainer}>
-                <DefaultInput label={'Title'} placeholder={'Teste'}></DefaultInput>
-                <DefaultInput label={'Notes'} placeholder={'Enter notes'}></DefaultInput> 
-        {/* Nao precisa ser obrigatorio */}
-        
-        <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-        {/* Nao precisa ser obrigatorio */}
-
-        <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
-
-        <DefaultDropdown label={'Status'} placeholder={'Select status'} options={["Finished", "To do"]}></DefaultDropdown>
-            </View>
-            </View>
+            <Animated.View
+                style={[
+                    styles.modalContainer,
+                    { transform: [{ translateY }] },
+                ]}
+            >
+                <PanGestureHandler
+                    onGestureEvent={onGestureEvent}
+                    onHandlerStateChange={onHandlerStateChange}
+                >
+                    <View style={styles.titleContainer}>
+                        <BackgroundGradientHorizontal style={styles.title}>
+                        <View style={styles.dragIndicator} />
+                            <ThemedText type="defaultSemiBold">Finish the TaskMaster Wireframe</ThemedText>
+                        </BackgroundGradientHorizontal>
+                    </View>
+                </PanGestureHandler>
+                <View style={styles.taskInfoContainer}>
+                    <DefaultInput label={'Title'} placeholder={'Teste'} />
+                    <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
+                    <DefaultDropdown
+                        label={'Priority'}
+                        placeholder={'Select priority'}
+                        options={['Low', 'Medium', 'High']}
+                    />
+                    <DefaultDropdown
+                        label={'Shift'}
+                        placeholder={'Select shift'}
+                        options={['Morning', 'Afternoon', 'Evening']}
+                    />
+                    <DefaultDropdown
+                        label={'Status'}
+                        placeholder={'Select status'}
+                        options={['Finished', 'To do']}
+                    />
+                </View>
+            </Animated.View>
         </View>
     </Modal>
   );
@@ -72,7 +105,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.1, // 20% da altura da tela
+    height: '100%', // 20% da altura da tela
 },
   modalOverlay: {
     flex: 1,
@@ -90,9 +123,19 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '100%',
   },
+  dragIndicator: {
+    width: Dimensions.get('window').width * 0.1, // Largura da linha
+    height: 2, // Altura da linha
+    backgroundColor: 'rgba(43, 50, 58, 0.5)', // Cor da linha
+    borderRadius: 2.5, // Borda arredondada para parecer uma alça
+    alignSelf: 'center', // Centraliza horizontalmente
+    marginBottom: 16,
+    marginTop: 8, // Espaçamento abaixo (ajuste conforme necessário)
+},
   title: {
     alignItems: 'center',
-    paddingVertical: 16,
+   
+    paddingBottom: 20,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     justifyContent: 'center',
