@@ -51,15 +51,21 @@ export default function NewTask() {
         <ThemedText type="title">New task</ThemedText>
       </View>
       <View style={styles.inputsContainer}>
-        <DefaultInput label={'Task title'} placeholder={'Enter task title'}></DefaultInput>
+        <DefaultInput label={'Title'} placeholder={'Enter title'}></DefaultInput>
+        <View style={styles.rowContainer}>
+          <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
+          {/* Nao precisa ser obrigatorio */}
 
+          <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
+        </View> 
+        <View style={styles.rowContainer}>
+          <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]}></DefaultDropdown>
+          {/* Nao precisa ser obrigatorio */}
+
+          <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]}></DefaultDropdown>
+        </View> 
         <DefaultInput label={'Notes'} placeholder={'Enter notes'}></DefaultInput> 
         {/* Nao precisa ser obrigatorio */}
-        
-        <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-        {/* Nao precisa ser obrigatorio */}
-
-        <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
 
       </View>
       <View style={styles.buttonContainer}>
@@ -84,7 +90,12 @@ const styles = StyleSheet.create({
   },
   inputsContainer: {
     marginBottom: 24,
-    flex: 1
+    flex: 1,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
   },
   buttonContainer: {
     flexDirection: 'row', // Coloca os botões lado a lado

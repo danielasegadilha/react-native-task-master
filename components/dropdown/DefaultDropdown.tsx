@@ -39,6 +39,7 @@ export default function DefaultDropdown({ label, placeholder, options }: Default
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
+    flex: 1,
   },
   label: {
     marginBottom: 5,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 0,
     backgroundColor: '#272E34',
-    paddingHorizontal: 15,
+    paddingHorizontal: 8,
     fontSize: 16,
     color: '#A0A0A1',
     width: '100%',

@@ -69,22 +69,21 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
                 </PanGestureHandler>
                 <View style={styles.taskInfoContainer}>
                     <DefaultInput label={'Title'} placeholder={'Teste'} />
-                    <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
-                    <DefaultDropdown
-                        label={'Priority'}
-                        placeholder={'Select priority'}
-                        options={['Low', 'Medium', 'High']}
-                    />
-                    <DefaultDropdown
-                        label={'Shift'}
-                        placeholder={'Select shift'}
-                        options={['Morning', 'Afternoon', 'Evening']}
-                    />
-                    <DefaultDropdown
-                        label={'Status'}
-                        placeholder={'Select status'}
-                        options={['Finished', 'To do']}
-                    />
+                
+                    <View style={styles.rowContainer}>
+          <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
+          {/* Nao precisa ser obrigatorio */}
+
+          <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
+        </View> 
+        <View style={styles.rowContainer}>
+          <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]}></DefaultDropdown>
+          {/* Nao precisa ser obrigatorio */}
+
+          <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]}></DefaultDropdown>
+        </View> 
+        <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
+                <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']}/>
                 </View>
             </Animated.View>
         </View>
@@ -139,9 +138,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     justifyContent: 'center',
   },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+  },
   taskInfoContainer: {
     padding: 20,
-    width: '100%'
+    width: '100%',
+    backgroundColor: '#1A1F25',
   }
 });
 
