@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   gradientBackground: {
     position: 'absolute',
     top: 0,
-    width: Dimensions.get('window').width,
+    width: '100%',
     height: '100%', // 20% da altura da tela
 },
   modalOverlay: {
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.80,
+    width: '100%',
+    height: '85%',
     backgroundColor: '#1A1F25',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
