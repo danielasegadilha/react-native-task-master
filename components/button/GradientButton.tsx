@@ -24,7 +24,7 @@ export default function GradientButton({ text, href }: DefaultButtonProps) {
         <BackgroundGradientHorizontal style={styles.addButton}>
             <Pressable onPress={handlePress}>
                 <View style={styles.pressable}>
-                <ThemedText type="defaultMedium">{text}</ThemedText>  {/* Exibe o texto passado */}
+                <ThemedText type="defaultSemiBold">{text}</ThemedText>  {/* Exibe o texto passado */}
                 </View>
             </Pressable>
         </BackgroundGradientHorizontal>

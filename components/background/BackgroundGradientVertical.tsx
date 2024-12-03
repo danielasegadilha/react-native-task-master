@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 interface BackgroundGradientProps {
     children: ReactNode;
     style?: object;
-    colors?: [string, string, ...string[]]; // Garante pelo menos dois elementos no array
+    colors?: string[]; // Garante pelo menos dois elementos no array
 }
 
 export default function BackgroundGradientVertical({ children, style, colors }: BackgroundGradientProps) {

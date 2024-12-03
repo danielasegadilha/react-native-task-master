@@ -15,7 +15,7 @@ export default function DefaultDropdown({ label, placeholder, options }: Default
 
   return (
     <View style={styles.container}>
-      <ThemedText type="smallSemiBold" style={styles.label}>
+      <ThemedText type="defaultBoldWhite" style={styles.label}>
         {label}
       </ThemedText>
       <View style={styles.dropdownContainer}>
@@ -53,18 +53,20 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     backgroundColor: '#272E34',
     paddingHorizontal: 15,
-    fontSize: 14,
+    fontSize: 16,
     color: '#A0A0A1',
     width: '100%',
+    fontFamily: 'Inter_400Regular',
   },
   placeholder: {
     fontFamily: 'Inter_400Regular', // Ou o fontFamily desejado
-    fontSize: 14,
+    fontSize: 16,
     color: '#A0A0A1', // Cor do placeholder
   },
   option: {
     fontFamily: 'Inter_400Regular', // Ou o fontFamily desejado
     fontSize: 14,
+    width: 50,
     color: '#A0A0A1', // Cor das opções
   },
 });

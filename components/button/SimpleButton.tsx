@@ -22,7 +22,7 @@ export default function DefaultButton({ text, href }: DefaultButtonProps) {
     <View>
         <Pressable style={styles.addButton} onPress={handlePress}>
             <View style={styles.pressable}>
-            <ThemedText type="defaultWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
+            <ThemedText type="defaultMediumWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
             </View>
         </Pressable>
     </View>
@@ -41,8 +41,5 @@ const styles = StyleSheet.create({
   pressable: {
     flexDirection: 'row',  // Para alinhar o ícone e o texto
     alignItems: 'center',  // Alinha o texto e o ícone
-  },
-  icon: {
-    marginLeft: 8,  // Espaçamento entre o ícone e o texto
   },
 });

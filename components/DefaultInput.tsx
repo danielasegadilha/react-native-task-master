@@ -15,12 +15,12 @@ export default function DefaultInput({ label, placeholder, ...rest }: DefaultInp
 
   return (
     <View style={styles.container}>
-      <ThemedText type="smallSemiBold" style={styles.label}>
+      <ThemedText type="defaultBoldWhite" style={styles.label}>
         {label}
       </ThemedText>
       <View>
         {showPlaceholder && (
-          <ThemedText type="small" style={styles.placeholder}>
+          <ThemedText type="defaultWhite" style={styles.placeholder}>
             {placeholder}
           </ThemedText>
         )}

@@ -2,7 +2,7 @@ import DayPeriodControl from "@/components/DayPeriodControl";
 import TaskItem from "@/components/TaskItem";
 import { ThemedText } from "@/components/ThemedText";
 import { Link, useRouter } from "expo-router";
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
 import NewTask from "../newTask";
 import NewTaskButton from "@/components/button/NewTaskButton";
@@ -10,10 +10,19 @@ import DefaultButton from "@/components/button/DefaultButton";
 import WeekDayButton from "@/components/button/WeekDayButton";
 import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import ModalTaskItem from "@/components/ModalTaskItem";
 
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [selectedTask, setSelectedTask] = useState(null); // Para armazenar a tarefa selecionada
+
+  // Função para alternar a visibilidade do modal
+  const toggleModal = (task = null) => {
+    // setSelectedTask(task); // Defina a tarefa selecionada no modal
+    setIsModalVisible(!isModalVisible); // Alterna a visibilidade do modal
+  };
     // const taskDatabase = useTasksDatabase()
   // const [tasks, setTasks] = useState<Task[]>([])
 
@@ -41,6 +50,8 @@ export default function HomeScreen() {
         <Ionicons name="settings-outline" size={20} color="#D1D3D5" />
         <MiniDropdown placeholder={"Per day"} options={["Per week", "Per month"]}></MiniDropdown>
       </View>
+      <ModalTaskItem taskTitle={""} colors={[]} isModalVisible={isModalVisible} 
+        toggleModal={toggleModal}></ModalTaskItem>
       <WeekDayButton></WeekDayButton>
       <View style={styles.contentButton}>
         <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
@@ -51,13 +62,13 @@ export default function HomeScreen() {
           <ThemedText type="small">6 Tasks</ThemedText>
           <DayPeriodControl text={'Morning'} />
         </View>
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Afternoon'} />
         </View>
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
-        <TaskItem colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Evening'} />
         </View>

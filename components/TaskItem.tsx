@@ -13,13 +13,15 @@ import Entypo from '@expo/vector-icons/build/Entypo';
 interface TaskItemProps {
     // task: Task; // Aqui você usa a interface Task
     colors: string[];
+    toggleModal: () => void;
 }
 
 // export default function TaskItem({ task }: TaskItemProps) {
-export default function TaskItem({colors: initialColors}: TaskItemProps) {
+export default function TaskItem({colors: initialColors, toggleModal}: TaskItemProps) {
 
   const [colors, setColors] = useState(initialColors);
   const [isDefaultColors, setIsDefaultColors] = useState(true); // Controla o estado do ciclo
+  const [isModalVisible, setModalVisible] = useState(false); // Adiciona o estado do modal
 
   const handleSquarePress = () => {
     if (isDefaultColors) {
@@ -42,22 +44,27 @@ export default function TaskItem({colors: initialColors}: TaskItemProps) {
 
   return (
     <View>
-      <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
-        <View style={styles.contentContainer}>
-          <Pressable
-            onPress={handleSquarePress}
-            style={[styles.squareBase, dynamicSquareStyle]}
-          />
-          {/* <IconCheck width={32} height={32} fill="#0CA402" /> */}
-          <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
-          <ThemedText type="defaultMedium">Teste</ThemedText>
-        </View>
-      </BackgroundGradientHorizontal>
+      <Pressable onPress={toggleModal} style={styles.container}>
+        <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
+          <View style={styles.contentContainer}>
+            <Pressable
+              onPress={handleSquarePress}
+              style={[styles.squareBase, dynamicSquareStyle]}
+            />
+            {/* <IconCheck width={32} height={32} fill="#0CA402" /> */}
+            <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
+            <ThemedText type="defaultMedium">Teste</ThemedText>
+          </View>
+        </BackgroundGradientHorizontal>
+      </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    zIndex: 0,
+  },
   taskContainer: {
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -72,9 +79,11 @@ const styles = StyleSheet.create({
   icon: {
     left: -4, // Move para a esquerda (valores negativos)
     top: -8,
+    zIndex: 2,
     position: "absolute"
   },
   squareBase: {
+    zIndex: 1,
     height: 24,
     width: 24,
     borderRadius: 4,
