@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   inputsContainer: {
-    marginBottom: 24
+    marginBottom: 24,
+    flex: 1
   },
   buttonContainer: {
     flexDirection: 'row', // Coloca os botões lado a lado

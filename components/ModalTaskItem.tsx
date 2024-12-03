@@ -50,6 +50,8 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
         {/* Nao precisa ser obrigatorio */}
 
         <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
+
+        <DefaultDropdown label={'Status'} placeholder={'Select status'} options={["Finished", "To do"]}></DefaultDropdown>
             </View>
             </View>
         </View>

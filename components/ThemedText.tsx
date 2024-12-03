@@ -6,7 +6,7 @@ import React from 'react';
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'defaultWhite' | 'defaultGray' | 'defaultMedium' | 'defaultMediumWhite' | 'defaultSemiBold' | 'defaultBoldWhite' | 'defaultBold' | 'small' | 'smallSemiBold' | 'smallXBold' | 'smallXBoldBlack'| 'smallXBoldWhite' | 'smallXBoldBlack' | 'largeBold' | 'title';
+  type?: 'defaultWhite' | 'defaultGray' | 'defaultMedium' | 'defaultMediumWhite' | 'defaultSemiBold' | 'defaultBoldWhite' | 'defaultBold' | 'small' | 'smallSemiBold' | 'smallXBold' | 'smallXBoldBlack'| 'smallXBoldWhite' | 'smallXBoldBlack' | 'largeBold' | 'title' | 'placeholder';
 };
 
 export function ThemedText({
@@ -22,7 +22,7 @@ export function ThemedText({
     <Text
       style={[
         { color, fontFamily: 'Inter' },
-        type === 'defaultWhite' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#B2B2B1' },
+        type === 'defaultWhite' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#FFFFF1' },
         type === 'defaultGray' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'defaultMedium' && { fontFamily: 'Inter_500Medium', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'defaultMediumWhite' && { fontFamily: 'Inter_500Medium', fontSize: 16, lineHeight: 24, color: '#FFFFF1' },
@@ -36,6 +36,7 @@ export function ThemedText({
         type === 'smallXBoldWhite' && { fontFamily: 'Inter_700Bold', fontSize: 12, lineHeight: 24, color: '#EFF7FF' },
         type === 'largeBold' && { fontFamily: 'Inter_700Bold', fontSize: 20, lineHeight: 24, color: '#2B323A' },
         type === 'title' && { fontFamily: 'Inter_600SemiBold', fontSize: 20, lineHeight: 24, color: '#FFFFF1' },
+        type === 'placeholder' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#A0A0A1' },
         style,
       ]}
       {...rest}

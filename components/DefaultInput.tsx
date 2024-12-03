@@ -20,7 +20,7 @@ export default function DefaultInput({ label, placeholder, ...rest }: DefaultInp
       </ThemedText>
       <View>
         {showPlaceholder && (
-          <ThemedText type="defaultWhite" style={styles.placeholder}>
+          <ThemedText type="placeholder" style={styles.placeholder}>
             {placeholder}
           </ThemedText>
         )}
