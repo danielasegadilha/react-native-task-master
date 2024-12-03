@@ -27,8 +27,17 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
 
     const onHandlerStateChange = (event: any) => {
         if (event.nativeEvent.state === State.END) {
-            if (event.nativeEvent.translationY > 100) {
-                toggleModal(); // Fecha o modal
+          const { translationY } = event.nativeEvent;
+
+          if (translationY > 100) {
+              Animated.timing(translateY, {
+                  toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
+                  duration: 300,
+                  useNativeDriver: true,
+              }).start(() => {
+                  toggleModal(); // Fecha o modal
+                  translateY.setValue(0); // Reseta para a próxima abertura
+              });
             } else {
                 Animated.spring(translateY, {
                     toValue: 0,
@@ -41,7 +50,6 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
     return (
         <Modal
         visible={isModalVisible}
-        animationType="slide"
         transparent={true}
         onRequestClose={toggleModal} style={styles.taskContainer}
         >
