@@ -20,11 +20,11 @@ export default function DefaultButton({ text, iconName, href }: DefaultButtonPro
     };
 
   return (
-    <View>
-        <Pressable style={styles.addButton} onPress={handlePress}>
+    <View style={styles.addButton}>
+        <Pressable onPress={handlePress}>
             <View style={styles.pressable}>
-            <ThemedText type="defaultWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
-            <MaterialCommunityIcons name={iconName} size={24} color="#B2B2B1" style={styles.icon} />
+              <ThemedText type="defaultWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
+              <MaterialCommunityIcons name={iconName} size={24} color="#B2B2B1" style={styles.icon} />
             </View>
         </Pressable>
     </View>
@@ -35,14 +35,15 @@ const styles = StyleSheet.create({
   addButton: {
     padding: 16,
     borderRadius: 16,
-    width: ((screenWidth - 52) / 2),
     backgroundColor: '#272E34',  // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   pressable: {
     flexDirection: 'row',  // Para alinhar o ícone e o texto
     alignItems: 'center',  // Alinha o texto e o ícone
+    width: '100%',
   },
   icon: {
     marginLeft: 8,  // Espaçamento entre o ícone e o texto

@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 16,
     justifyContent: 'space-between',
+    gap: 16,
   },
   contentTasks: {
     flexGrow: 1, // Garante que o conteúdo ocupe o espaço restante
