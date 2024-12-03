@@ -134,8 +134,7 @@ const styles = StyleSheet.create({
 },
   title: {
     alignItems: 'center',
-   
-    paddingBottom: 20,
+    paddingBottom: 16,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     justifyContent: 'center',

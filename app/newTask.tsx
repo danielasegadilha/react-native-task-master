@@ -10,6 +10,7 @@ import { ThemedText } from '@/components/ThemedText';
 import DefaultDropdown from '@/components/dropdown/DefaultDropdown';
 import SimpleButton from '@/components/button/SimpleButton';
 import GradientButton from '@/components/button/GradientButton';
+import Ionicons from '@expo/vector-icons/build/Ionicons';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -45,7 +46,8 @@ export default function NewTask() {
   return (
     <View style={styles.container}>
       
-      <View style={styles.titleContainer}>
+      <View style={styles.contentHeader}>
+        <Ionicons name="settings-outline" size={20} color="#D1D3D5" />
         <ThemedText type="title">New task</ThemedText>
       </View>
       <View style={styles.inputsContainer}>
@@ -74,8 +76,11 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor: '#1A1F25',
   },
-  titleContainer: {
+  contentHeader: {
     marginBottom: 32,
+    flexDirection: 'row', // Distribui os itens horizontalmente
+    paddingVertical: 8,
+    justifyContent: 'space-between'
   },
   inputsContainer: {
     marginBottom: 24,
