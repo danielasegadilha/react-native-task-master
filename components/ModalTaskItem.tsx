@@ -20,36 +20,38 @@ interface ModalTaskItemProps {
 export default function ModalTaskItem({ taskTitle, taskDescription, colors, isModalVisible, toggleModal }: ModalTaskItemProps) {
     const translateY = new Animated.Value(0);
 
-    const onGestureEvent = Animated.event(
-        [{ nativeEvent: { translationY: translateY } }],
-        { useNativeDriver: true }
-    );
+    const onGestureEvent = (event: any) => {
+      const { translationY } = event.nativeEvent;
+      translateY.setValue(translationY); // Atualiza manualmente o valor de translateY com o gesto
+    };
 
     const onHandlerStateChange = (event: any) => {
         if (event.nativeEvent.state === State.END) {
-          const { translationY } = event.nativeEvent;
+          // const { translationY } = event.nativeEvent;
 
-          if (translationY > 100) {
-              Animated.timing(translateY, {
-                  toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
-                  duration: 300,
-                  useNativeDriver: true,
-              }).start(() => {
-                  toggleModal(); // Fecha o modal
-                  translateY.setValue(0); // Reseta para a próxima abertura
-              });
+          // if (translationY > 100) {
+          //     Animated.timing(translateY, {
+          //         toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
+          //         duration: 300,
+          //         useNativeDriver: false,
+          //     }).start(() => {
+          //         toggleModal(); // Fecha o modal
+          //         translateY.setValue(0); // Reseta para a próxima abertura
+          //     });
+              toggleModal(); 
             } else {
                 Animated.spring(translateY, {
                     toValue: 0,
-                    useNativeDriver: true,
+                    useNativeDriver: false,
                 }).start(); // Volta à posição original
             }
         }
-    };
+    
 
     return (
         <Modal
         visible={isModalVisible}
+        animationType='slide'
         transparent={true}
         onRequestClose={toggleModal} style={styles.taskContainer}
         >
