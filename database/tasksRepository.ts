@@ -1,8 +1,8 @@
-import { Task, taskList } from "@/app/types/Task";
+import { Tasks, taskList } from "@/app/types/Tasks";
 import { db } from "./db";
 
 
-export const addTask = async (task: Omit<Task, 'id'>): Promise<void> => {
+export const addTask = async (task: Omit<Tasks, 'id'>): Promise<void> => {
     try {
         await db.runAsync(
         'INSERT INTO tasks (title, description, deadline, priority, status) VALUES (?, ?, ?, ?, ?);',
@@ -16,9 +16,9 @@ export const addTask = async (task: Omit<Task, 'id'>): Promise<void> => {
     }
 };
 
-export const getTasks = async (): Promise<Task[]> => {
+export const getTasks = async (): Promise<Tasks[]> => {
     try {
-      const tasks: Task[] = await db.getAllAsync(
+      const tasks: Tasks[] = await db.getAllAsync(
         'SELECT * FROM tasks;', 
         [] // Parâmetros, se necessário
       );
@@ -33,7 +33,7 @@ export const getTasks = async (): Promise<Task[]> => {
     }
 };
   
-export const updateTask = async (task: Task): Promise<void> => {
+export const updateTask = async (task: Tasks): Promise<void> => {
     try {
       await db.runAsync(
         'UPDATE tasks SET title = ?, description = ?, deadline = ?, priority = ?, status = ? WHERE id = ?;',

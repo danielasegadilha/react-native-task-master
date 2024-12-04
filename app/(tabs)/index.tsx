@@ -11,7 +11,7 @@ import WeekDayButton from "@/components/button/WeekDayButton";
 import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ModalTaskItem from "@/components/ModalTaskItem";
-import { Task, taskList } from "../types/Task";
+import { Tasks, taskList } from "../types/Tasks";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);

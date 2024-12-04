@@ -5,16 +5,27 @@ export const db = SQLite.openDatabaseSync('tasks.db');
 
 export const initDatabase = async (): Promise<void> => {
     try {
-      await db.execAsync(`
-        CREATE TABLE IF NOT EXISTS tasks (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          title TEXT NOT NULL,
-          description TEXT,
-          deadline TEXT NOT NULL,
-          priority TEXT NOT NULL,
-          status INTEGER NOT NULL
-        );
-      `);
+
+        /*// Remover a tabela antiga
+        await db.execAsync(`
+            DROP TABLE IF EXISTS tasks;
+        `);
+        console.log('Tabela antiga removida com sucesso.');*/
+
+        await db.execAsync(`
+            CREATE TABLE tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT,
+            deadline TEXT NOT NULL,
+            priority TEXT NOT NULL CHECK (priority IN ('Low', 'Medium', 'High')),
+            shift TEXT NOT NULL CHECK (shift IN ('Morning', 'Afternoon', 'Evening')),
+            difficulty TEXT NOT NULL CHECK (difficulty IN ('Hard', 'Medium', 'Easy')),
+            duration TEXT NOT NULL CHECK (duration IN ('Time-Consuming', 'Normal', 'Quickly')),
+            note TEXT,
+            status INTEGER NOT NULL CHECK (status IN (0, 1))
+            );
+        `);
       console.log('Tabela criada / inicializada com sucesso.');
       await getTasks();
       await logDatabaseContents('tasks');

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Dimensions, Pressable } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
-import { Task } from './types/Task';
+import { Tasks } from './types/Tasks';
 import { ThemedView } from '@/components/ThemedView'; // Exemplo de componente de tema
 import { useTasksDatabase } from '@/hooks/useTaskDatabase';
 import DefaultInput from '@/components/DefaultInput';
