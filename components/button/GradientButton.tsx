@@ -23,9 +23,7 @@ export default function GradientButton({ text, href }: DefaultButtonProps) {
     <View style={styles.container}>
         <BackgroundGradientHorizontal style={styles.addButton}>
             <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
-                <View style={styles.pressable}>
-                <ThemedText type="defaultSemiBold">{text}</ThemedText>
-                </View>
+              <ThemedText type="defaultSemiBold">{text}</ThemedText>
             </Pressable>
         </BackgroundGradientHorizontal>
     </View>
@@ -42,12 +40,5 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  pressable: {
-    flexDirection: 'row',  // Para alinhar o ícone e o texto
-    alignItems: 'center',  // Alinha o texto e o ícone
-  },
-  icon: {
-    marginLeft: 8,  // Espaçamento entre o ícone e o texto
   },
 });

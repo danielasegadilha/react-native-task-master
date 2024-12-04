@@ -26,8 +26,7 @@ export default function MiniDropdown({ placeholder, options }: DefaultDropdownPr
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   dropdown: {
     height: 20,

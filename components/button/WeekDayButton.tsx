@@ -42,18 +42,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
+    height: 100,
   },
   title: {
     padding: 4,
   },
   circleContainer: {
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 35,
   },
   circle: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
     alignItems: 'center',
     justifyContent: 'center',
   },

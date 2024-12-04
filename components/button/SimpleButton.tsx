@@ -21,9 +21,7 @@ export default function DefaultButton({ text, href }: DefaultButtonProps) {
   return (
     <View style={styles.addButton}>
         <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
-            <View style={styles.pressable}>
             <ThemedText type="defaultMediumWhite">{text}</ThemedText>
-            </View>
         </Pressable>
     </View>
   );
@@ -37,9 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#272E34',  // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  pressable: {
-    flexDirection: 'row',  // Para alinhar o ícone e o texto
-    alignItems: 'center',  // Alinha o texto e o ícone
   },
 });

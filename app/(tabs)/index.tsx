@@ -59,13 +59,13 @@ export default function HomeScreen() {
           <ThemedText type="small">6 Tasks</ThemedText>
           <DayPeriodControl text={'Morning'}/>
         </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Afternoon'}/>
         </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Evening'}/>
         </View>

@@ -23,7 +23,7 @@ export default function DefaultButton({ text, iconName, href }: DefaultButtonPro
         <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
             <View style={styles.pressable}>
               <ThemedText type="defaultWhite">{text}</ThemedText>
-              <MaterialCommunityIcons name={iconName} size={24} color="#B2B2B1" style={styles.icon}/>
+              <MaterialCommunityIcons name={iconName} size={20} color="#B2B2B1" style={styles.icon}/>
             </View>
         </Pressable>
     </View>

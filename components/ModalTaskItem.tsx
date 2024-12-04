@@ -17,7 +17,7 @@ interface ModalTaskItemProps {
     toggleModal: () => void;  // Recebe a função toggleModal para controlar o modal
 }
   
-export default function ModalTaskItem({ taskTitle, taskDescription, colors, isModalVisible, toggleModal }: ModalTaskItemProps) {
+export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTaskItemProps) {
     const translateY = new Animated.Value(0);
     const panRef = useRef(null);
 
