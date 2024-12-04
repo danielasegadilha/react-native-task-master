@@ -16,8 +16,8 @@ export const initDatabase = async (): Promise<void> => {
         );
       `);
       console.log('Tabela criada / inicializada com sucesso.');
-
       await getTasks();
+      await logDatabaseContents('tasks');
     } catch (error) {
       console.error('Erro ao criar tabela:', error);
     }
@@ -32,3 +32,16 @@ export const closeDatabase = async (): Promise<void> => {
     }
 };
   
+
+export const logDatabaseContents = async (tableName: string): Promise<void> => {
+    try {
+      const rows = await db.getAllAsync(
+        `SELECT * FROM ${tableName};`, // Consulta para selecionar tudo da tabela
+        []
+      );
+  
+      console.log(`Conteúdo da tabela ${tableName}:`, rows);
+    } catch (error) {
+      console.error(`Erro ao listar conteúdo da tabela ${tableName}:`, error);
+    }
+  };

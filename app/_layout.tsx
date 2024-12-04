@@ -2,7 +2,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -23,8 +23,15 @@ export default function RootLayout() {
     Inter_900Black,
   });
 
+  // Variável de controle para garantir inicialização única
+  const hasInitializedDatabase = useRef(false);
+
   useEffect(() => {
-    initDatabase();
+    if (!hasInitializedDatabase.current) {
+      console.log('Chamando initDatabase');
+      initDatabase();
+      hasInitializedDatabase.current = true; // Marca como inicializado
+    }
     if (loaded) {
       SplashScreen.hideAsync();
     }
