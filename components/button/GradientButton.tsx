@@ -1,22 +1,27 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Dimensions } from 'react-native';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { ThemedText } from '../ThemedText';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import BackgroundGradientHorizontal from '../background/BackgroundGradientHorizontal';
 
 const screenWidth = Dimensions.get('window').width;
 
 interface DefaultButtonProps {
     text: string;
-    href: "/(tabs)" | "/newTask" | "./(tabs)/notes" | "./(tabs)/bullet";
+    href?: "/(tabs)" | "/newTask" | "./(tabs)/notes" | "./(tabs)/bullet";
+    onPress?: () => void;
   }
   
-export default function GradientButton({ text, href }: DefaultButtonProps) {
+export default function GradientButton({ text, href, onPress }: DefaultButtonProps) {
     const router = useRouter();
 
-    const handlePress = () => {
-        router.push({ pathname: href });  // Navega programaticamente
+    const handlePress = async () => {
+      if (onPress) {
+        await onPress(); // Executa a ação personalizada, espera sua conclusão
+      }
+      if (href) {
+        router.push({ pathname: href }); // Navega para o `href` fornecido
+      }
     };
 
   return (
