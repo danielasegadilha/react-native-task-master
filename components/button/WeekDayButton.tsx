@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    paddingBottom: 4,
+    padding: 4,
   },
   circleContainer: {
     borderRadius: 30,

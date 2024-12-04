@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#21272D', // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#E8E8E8',
-    shadowOffset: {
-      width: 0,
-      height: 0, // Sombra abaixo
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 8, // Suavidade da sombra
-    // Sombra para Android
-    elevation: 10,
-    // boxShadow: '0px 0px 8px rgba(232, 232, 232, 0.6)',
+    // shadowColor: '#E8E8E8',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0, // Sombra abaixo
+    // },
+    // shadowOpacity: 0.6,
+    // shadowRadius: 8, // Suavidade da sombra
+    // // Sombra para Android
+    // elevation: 10,
+    boxShadow: '0px 0px 8px rgba(232, 232, 232, 0.6)',
   },
 });

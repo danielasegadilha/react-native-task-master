@@ -48,7 +48,6 @@ export default function TaskItem({colors: initialColors, toggleModal}: TaskItemP
         <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
           <View style={styles.contentContainer}>
             <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
-            {/* <IconCheck width={32} height={32} fill="#0CA402" /> */}
             <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
             <ThemedText type="defaultMedium">Teste</ThemedText>
           </View>
@@ -63,8 +62,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   taskContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    padding: 24,
     marginBottom: 4,
     borderRadius: 8,
     position: "relative"
@@ -84,6 +82,6 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     borderRadius: 4,
-    marginRight: 16,
+
   },
 });
