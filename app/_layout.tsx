@@ -7,6 +7,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import React from 'react';
+import { initDatabase } from '@/database/db';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -23,6 +24,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    initDatabase();
     if (loaded) {
       SplashScreen.hideAsync();
     }

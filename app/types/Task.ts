@@ -6,3 +6,5 @@ export interface Task {
     priority: string; 
     status: 0 | 1; 
   }
+
+  export let taskList: Task[] = [];

@@ -3,7 +3,7 @@ import TaskItem from "@/components/TaskItem";
 import { ThemedText } from "@/components/ThemedText";
 import { Link, useRouter } from "expo-router";
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import NewTask from "../newTask";
 import NewTaskButton from "@/components/button/NewTaskButton";
 import DefaultButton from "@/components/button/DefaultButton";
@@ -11,6 +11,7 @@ import WeekDayButton from "@/components/button/WeekDayButton";
 import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ModalTaskItem from "@/components/ModalTaskItem";
+import { Task, taskList } from "../types/Task";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,12 +39,18 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* <FlatList
-        data={tasks} 
-        keyExtractor={(item: { id: number; }) => String(item.id)}
-        renderItem={({ item }: { item: Task }) => <TaskItem task={item} />}
-        contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
-      /> */}
+      <FlatList
+        data={taskList} // Usando a variável global
+        keyExtractor={(item) => String(item.id)} // Usa o ID como chave
+        renderItem={({ item }) => (
+          <TaskItem
+            text={item.title}
+            colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
+            toggleModal={toggleModal}
+          />
+        )}
+        contentContainerStyle={{ paddingBottom: 80 }} // Espaçamento para evitar sobreposição com botões
+      />
       <View style={styles.contentHeader}>
         <Ionicons name="settings-outline" size={20} color="#D1D3D5"/>
         <MiniDropdown placeholder={"Per day"} options={["Per week", "Per month"]}></MiniDropdown>
