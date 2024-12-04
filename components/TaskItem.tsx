@@ -14,11 +14,11 @@ interface TaskItemProps {
     // task: Task; // Aqui você usa a interface Task
     colors: string[];
     toggleModal: () => void;
+    
 }
 
 // export default function TaskItem({ task }: TaskItemProps) {
 export default function TaskItem({colors: initialColors, toggleModal}: TaskItemProps) {
-
   const [colors, setColors] = useState(initialColors);
   const [isDefaultColors, setIsDefaultColors] = useState(true); // Controla o estado do ciclo
   const [isModalVisible, setModalVisible] = useState(false); // Adiciona o estado do modal
@@ -47,12 +47,9 @@ export default function TaskItem({colors: initialColors, toggleModal}: TaskItemP
       <Pressable onPress={toggleModal} style={styles.container}>
         <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
           <View style={styles.contentContainer}>
-            <Pressable
-              onPress={handleSquarePress}
-              style={[styles.squareBase, dynamicSquareStyle]}
-            />
+            <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
             {/* <IconCheck width={32} height={32} fill="#0CA402" /> */}
-            <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
+            <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
             <ThemedText type="defaultMedium">Teste</ThemedText>
           </View>
         </BackgroundGradientHorizontal>

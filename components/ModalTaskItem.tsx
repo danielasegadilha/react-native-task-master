@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   dragIndicator: {
-    width: Dimensions.get('window').width * 0.1, // Largura da linha
+    width: '10%', // Largura da linha
     height: 2, // Altura da linha
     backgroundColor: 'rgba(43, 50, 58, 0.5)', // Cor da linha
     borderRadius: 2.5, // Borda arredondada para parecer uma alça

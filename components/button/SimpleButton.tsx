@@ -19,10 +19,10 @@ export default function DefaultButton({ text, href }: DefaultButtonProps) {
     };
 
   return (
-    <View>
-        <Pressable style={styles.addButton} onPress={handlePress}>
+    <View style={styles.addButton}>
+        <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
             <View style={styles.pressable}>
-            <ThemedText type="defaultMediumWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
+            <ThemedText type="defaultMediumWhite">{text}</ThemedText>
             </View>
         </Pressable>
     </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   addButton: {
     padding: 16,
     borderRadius: 16,
-    width: ((screenWidth - 52) / 2),
+    flex: 1,
     backgroundColor: '#272E34',  // Cor do botão
     alignItems: 'center',
     justifyContent: 'center',

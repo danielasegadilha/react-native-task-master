@@ -29,8 +29,8 @@ export default function WeekDayButton() {
       <ThemedText type="smallSemiBold" style={styles.title}>{title}</ThemedText>
       <BackgroundGradientVertical style={styles.circleContainer}>
         <Pressable style={styles.circle} onPress={handlePress}>
-          <ThemedText type="smallXBoldBlack">{formattedMonth}</ThemedText>  {/* Exibe o mês com primeira letra maiúscula */}
-          <ThemedText type="largeBold">{dayOfMonth}</ThemedText>  {/* Exibe o dia com zero à esquerda se necessário */}
+          <ThemedText type="smallXBoldBlack">{formattedMonth}</ThemedText> 
+          <ThemedText type="largeBold">{dayOfMonth}</ThemedText>  
         </Pressable>
       </BackgroundGradientVertical>
     </View>

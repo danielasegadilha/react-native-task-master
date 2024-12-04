@@ -12,8 +12,6 @@ import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ModalTaskItem from "@/components/ModalTaskItem";
 
-const screenWidth = Dimensions.get('window').width;
-
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   // const [selectedTask, setSelectedTask] = useState(null); // Para armazenar a tarefa selecionada
@@ -47,11 +45,10 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingBottom: 80 }} // Para evitar sobreposição do botão
       /> */}
       <View style={styles.contentHeader}>
-        <Ionicons name="settings-outline" size={20} color="#D1D3D5" />
+        <Ionicons name="settings-outline" size={20} color="#D1D3D5"/>
         <MiniDropdown placeholder={"Per day"} options={["Per week", "Per month"]}></MiniDropdown>
       </View>
-      <ModalTaskItem taskTitle={""} colors={[]} isModalVisible={isModalVisible} 
-        toggleModal={toggleModal}></ModalTaskItem>
+      <ModalTaskItem taskTitle={""} colors={[]} isModalVisible={isModalVisible} toggleModal={toggleModal}></ModalTaskItem>
       <WeekDayButton></WeekDayButton>
       <View style={styles.contentButton}>
         <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
@@ -60,17 +57,17 @@ export default function HomeScreen() {
       <View style={styles.contentTasks}>
         <View style={styles.contentHeader}>
           <ThemedText type="small">6 Tasks</ThemedText>
-          <DayPeriodControl text={'Morning'} />
+          <DayPeriodControl text={'Morning'}/>
         </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
         <View style={styles.contentHeaderEnd}>
-          <DayPeriodControl text={'Afternoon'} />
+          <DayPeriodControl text={'Afternoon'}/>
         </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} />
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
+        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']}/>
         <View style={styles.contentHeaderEnd}>
-          <DayPeriodControl text={'Evening'} />
+          <DayPeriodControl text={'Evening'}/>
         </View>
         
       </View>

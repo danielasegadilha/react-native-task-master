@@ -12,7 +12,6 @@ import SimpleButton from '@/components/button/SimpleButton';
 import GradientButton from '@/components/button/GradientButton';
 import Ionicons from '@expo/vector-icons/build/Ionicons';
 
-const screenWidth = Dimensions.get('window').width;
 
 export default function NewTask() {
   
@@ -45,30 +44,23 @@ export default function NewTask() {
     
   return (
     <View style={styles.container}>
-      
       <View style={styles.contentHeader}>
-        <Ionicons name="settings-outline" size={20} color="#D1D3D5" />
+        <Ionicons name="settings-outline" size={20} color="#D1D3D5"/>
         <ThemedText type="title">New task</ThemedText>
       </View>
       <View style={styles.inputsContainer}>
         <DefaultInput label={'Title'} placeholder={'Enter title'}></DefaultInput>
         <View style={styles.rowContainer}>
           <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-          {/* Nao precisa ser obrigatorio */}
-
           <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
         </View> 
         <View style={styles.rowContainer}>
           <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]}></DefaultDropdown>
-          {/* Nao precisa ser obrigatorio */}
-
           <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]}></DefaultDropdown>
         </View> 
         <DefaultInput label={'Notes'} placeholder={'Enter notes'}></DefaultInput> 
-        {/* Nao precisa ser obrigatorio */}
-
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.rowContainer}>
         <SimpleButton text={'Cancel'} href={'/(tabs)'}></SimpleButton>
         <GradientButton text={'Create'} href={'/(tabs)'}></GradientButton>
       </View>
@@ -96,10 +88,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 16,
-  },
-  buttonContainer: {
-    flexDirection: 'row', // Coloca os botões lado a lado
-    justifyContent: 'space-between',
-    
   },
 });

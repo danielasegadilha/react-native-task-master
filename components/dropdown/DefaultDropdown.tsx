@@ -15,18 +15,10 @@ export default function DefaultDropdown({ label, placeholder, options }: Default
 
   return (
     <View style={styles.container}>
-      <ThemedText type="defaultBoldWhite" style={styles.label}>
-        {label}
-      </ThemedText>
+      <ThemedText type="defaultBoldWhite" style={styles.label}>{label}</ThemedText>
       <View style={styles.dropdownContainer}>
-        <Picker
-          style={styles.dropdown}
-          selectedValue={selectedValue}
-          onValueChange={(itemValue) => setSelectedValue(itemValue)}
-        >
-          {/* Placeholder */}
+        <Picker style={styles.dropdown} selectedValue={selectedValue} onValueChange={(itemValue) => setSelectedValue(itemValue)}>
           <Picker.Item label={placeholder} value="" enabled={false}  style={styles.placeholder}/>
-
           {options.map((option, index) => (
             <Picker.Item key={index} label={option} value={option} style={styles.option}/>
           ))}

@@ -14,20 +14,12 @@ export default function MiniDropdown({ placeholder, options }: DefaultDropdownPr
 
   return (
     <View style={styles.container}>
-      
-        <Picker
-          style={styles.dropdown}
-          selectedValue={selectedValue}
-          onValueChange={(itemValue) => setSelectedValue(itemValue)}
-        >
-          {/* Placeholder */}
-          <Picker.Item label={placeholder} value="" enabled={false}  style={styles.placeholder}/>
-
-          {options.map((option, index) => (
-            <Picker.Item key={index} label={option} value={option} style={styles.option}/>
-          ))}
-        </Picker>
-
+      <Picker style={styles.dropdown} selectedValue={selectedValue} onValueChange={(itemValue) => setSelectedValue(itemValue)}>
+        <Picker.Item label={placeholder} value="" enabled={false} style={styles.placeholder}/>
+        {options.map((option, index) => (
+          <Picker.Item key={index} label={option} value={option} style={styles.option}/>
+        ))}
+      </Picker>
     </View>
   );
 }

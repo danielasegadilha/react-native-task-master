@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8, // Suavidade da sombra
     // Sombra para Android
     elevation: 10,
+    // boxShadow: '0px 0px 8px rgba(232, 232, 232, 0.6)',
   },
 });

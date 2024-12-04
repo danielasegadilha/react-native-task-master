@@ -20,11 +20,11 @@ export default function GradientButton({ text, href }: DefaultButtonProps) {
     };
 
   return (
-    <View>
+    <View style={styles.container}>
         <BackgroundGradientHorizontal style={styles.addButton}>
-            <Pressable onPress={handlePress}>
+            <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
                 <View style={styles.pressable}>
-                <ThemedText type="defaultSemiBold">{text}</ThemedText>  {/* Exibe o texto passado */}
+                <ThemedText type="defaultSemiBold">{text}</ThemedText>
                 </View>
             </Pressable>
         </BackgroundGradientHorizontal>
@@ -33,10 +33,13 @@ export default function GradientButton({ text, href }: DefaultButtonProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   addButton: {
     padding: 16,
     borderRadius: 16,
-    width: ((screenWidth - 52) / 2),
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },

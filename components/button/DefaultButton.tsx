@@ -14,17 +14,16 @@ interface DefaultButtonProps {
   
 export default function DefaultButton({ text, iconName, href }: DefaultButtonProps) {
     const router = useRouter();
-
     const handlePress = () => {
         router.push({ pathname: href });  // Navega programaticamente
     };
 
   return (
     <View style={styles.addButton}>
-        <Pressable onPress={handlePress}>
+        <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
             <View style={styles.pressable}>
-              <ThemedText type="defaultWhite">{text}</ThemedText>  {/* Exibe o texto passado */}
-              <MaterialCommunityIcons name={iconName} size={24} color="#B2B2B1" style={styles.icon} />
+              <ThemedText type="defaultWhite">{text}</ThemedText>
+              <MaterialCommunityIcons name={iconName} size={24} color="#B2B2B1" style={styles.icon}/>
             </View>
         </Pressable>
     </View>

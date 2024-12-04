@@ -16,12 +16,12 @@ export function ThemedText({
   type = 'defaultWhite',
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  // const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   return (
     <Text
       style={[
-        { color, fontFamily: 'Inter' },
+        { fontFamily: 'Inter' },
         type === 'defaultWhite' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#FFFFF1' },
         type === 'defaultGray' && { fontFamily: 'Inter_400Regular', fontSize: 16, lineHeight: 24, color: '#2B323A' },
         type === 'defaultMedium' && { fontFamily: 'Inter_500Medium', fontSize: 16, lineHeight: 24, color: '#2B323A' },
