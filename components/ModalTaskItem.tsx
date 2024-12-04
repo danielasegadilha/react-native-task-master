@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, Pressable, Dimensions, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
@@ -7,7 +7,7 @@ import { ThemedText } from './ThemedText';
 import SimpleButton from '@/components/button/SimpleButton';
 import DefaultInput from './DefaultInput';
 import DefaultDropdown from './dropdown/DefaultDropdown';
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, PanGestureHandler, State } from 'react-native-gesture-handler';
 
 interface ModalTaskItemProps {
     taskTitle: string;
@@ -19,6 +19,7 @@ interface ModalTaskItemProps {
   
 export default function ModalTaskItem({ taskTitle, taskDescription, colors, isModalVisible, toggleModal }: ModalTaskItemProps) {
     const translateY = new Animated.Value(0);
+    const panRef = useRef(null);
 
     const onGestureEvent = (event: any) => {
       const { translationY } = event.nativeEvent;
@@ -48,59 +49,62 @@ export default function ModalTaskItem({ taskTitle, taskDescription, colors, isMo
         }
     
 
-    return (
-        <Modal
-        visible={isModalVisible}
-        animationType='slide'
-        transparent={true}
-        onRequestClose={toggleModal} style={styles.taskContainer}
-        >
-        <View style={styles.modalOverlay}>
-            <LinearGradient
-                    colors={['rgba(10, 21, 10, 0.6)', 'rgba(26, 31, 37, 0.2)']}
-                    style={styles.gradientBackground}
+        return (
+          <Modal
+            visible={isModalVisible}
+            animationType="slide"
+            transparent={true}
+            onRequestClose={toggleModal}
+            style={styles.taskContainer}
+          >
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <View style={styles.modalOverlay}>
+                <LinearGradient
+                  colors={['rgba(10, 21, 10, 0.6)', 'rgba(26, 31, 37, 0.2)']}
+                  style={styles.gradientBackground}
                 />
-            <Animated.View
-                style={[
+                <Animated.View
+                  style={[
                     styles.modalContainer,
                     { transform: [{ translateY }] },
-                ]}
-            >
-                <PanGestureHandler
-                    onGestureEvent={onGestureEvent}
-                    onHandlerStateChange={onHandlerStateChange}
+                  ]}
                 >
+                  <PanGestureHandler
+                    onGestureEvent={onGestureEvent}
+                    onHandlerStateChange={onHandlerStateChange} ref={panRef}
+                  >
                     <View style={styles.titleContainer}>
-                        <BackgroundGradientHorizontal style={styles.title}>
+                      <BackgroundGradientHorizontal style={styles.title}>
                         <View style={styles.dragIndicator} />
-                            <ThemedText type="defaultSemiBold">Finish the TaskMaster Wireframe</ThemedText>
-                        </BackgroundGradientHorizontal>
+                        <ThemedText type="defaultSemiBold">Finish the TaskMaster Wireframe</ThemedText>
+                      </BackgroundGradientHorizontal>
                     </View>
-                </PanGestureHandler>
-                <View style={styles.taskInfoContainer}>
+                  </PanGestureHandler>
+                  <View style={styles.taskInfoContainer}>
                     <DefaultInput label={'Title'} placeholder={'Teste'} />
-                
+      
                     <View style={styles.rowContainer}>
-          <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]}></DefaultDropdown>
-          {/* Nao precisa ser obrigatorio */}
-
-          <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]}></DefaultDropdown>
-        </View> 
-        <View style={styles.rowContainer}>
-          <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]}></DefaultDropdown>
-          {/* Nao precisa ser obrigatorio */}
-
-          <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]}></DefaultDropdown>
-        </View> 
-        <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
-                <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']}/>
-                </View>
-            </Animated.View>
-        </View>
-    </Modal>
-  );
-};
-
+                      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} />
+                      {/* Não precisa ser obrigatório */}
+      
+                      <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} />
+                    </View>
+                    <View style={styles.rowContainer}>
+                      <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} />
+                      {/* Não precisa ser obrigatório */}
+      
+                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} />
+                    </View>
+                    <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
+                    <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']} />
+                  </View>
+                </Animated.View>
+              </View>
+            </GestureHandlerRootView>
+          </Modal>
+        );
+      };
+      
 const styles = StyleSheet.create({
   taskContainer: {
     paddingHorizontal: 16,
