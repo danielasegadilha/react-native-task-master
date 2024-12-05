@@ -22,61 +22,65 @@ export default function HomeScreen() {
     // setSelectedTask(task); // Defina a tarefa selecionada no modal
     setIsModalVisible(!isModalVisible); // Alterna a visibilidade do modal
   };
-    // const taskDatabase = useTasksDatabase()
-  // const [tasks, setTasks] = useState<Task[]>([])
-
-  // async function listTask() {
-  //   try {
-  //     const response = await taskDatabase.getAll()
-  //     setTasks(response)
-  //   } catch (error) {
-  //     console.log("Empty list")
-  //   }
-
-  // }
-
-  // useEffect(() => {listTask()}, [tasks])
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={taskList} // Usando a variável global
-        keyExtractor={(item) => String(item.id)} // Usa o ID como chave
-        renderItem={({ item }) => (
-          <TaskItem
-            text={item.title}
-            colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
-            toggleModal={toggleModal}
-          />
-        )}
-        contentContainerStyle={{ paddingBottom: 80 }} // Espaçamento para evitar sobreposição com botões
-      />
       <View style={styles.contentHeader}>
         <Ionicons name="settings-outline" size={20} color="#D1D3D5"/>
         <MiniDropdown placeholder={"Per day"} options={["Per week", "Per month"]}></MiniDropdown>
       </View>
-      <ModalTaskItem taskTitle={""} colors={[]} isModalVisible={isModalVisible} toggleModal={toggleModal}></ModalTaskItem>
+      {/* <ModalTaskItem taskTitle={""} colors={[]} isModalVisible={isModalVisible} toggleModal={toggleModal}></ModalTaskItem> */}
       <WeekDayButton></WeekDayButton>
       <View style={styles.contentButton}>
         <DefaultButton text={'Reminder'} iconName={'pin-outline'} href={'/(tabs)'}></DefaultButton>
         <DefaultButton text={'Progress'} iconName={'trending-up'} href={'/(tabs)'}></DefaultButton>
       </View>
-      <View style={styles.contentTasks}>
-        <View style={styles.contentHeader}>
-          <ThemedText type="small">6 Tasks</ThemedText>
-          <DayPeriodControl text={'Morning'}/>
-        </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
+      <View style={styles.containerTasks}>
+        <View>
+          <View style={styles.contentHeader}>
+            <ThemedText type="small">6 Tasks</ThemedText>
+            <DayPeriodControl text={'Morning'}/>
+          </View>
+          <FlatList
+          data={taskList.filter(task => task.shift === 'Morning')} // Filtra tarefas com shift 'Morning'
+            keyExtractor={(item) => String(item.id)} // Usa o ID como chave
+            renderItem={({ item }) => (
+            <TaskItem
+            text={item.title}
+            colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
+            task={item}/>
+        )}
+      
+      />
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Afternoon'}/>
         </View>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
-        <TaskItem toggleModal={toggleModal} colors={['#FFDF95', '#FECD71', '#FCA521']} text={"Teste de texto"}/>
+        <FlatList
+          data={taskList.filter(task => task.shift === 'Afternoon')} // Filtra tarefas com shift 'Morning'
+            keyExtractor={(item) => String(item.id)} // Usa o ID como chave
+            renderItem={({ item }) => (
+          <TaskItem
+            text={item.title}
+            colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
+            task={item}/>
+        )}
+      />
+        
         <View style={styles.contentHeaderEnd}>
           <DayPeriodControl text={'Evening'}/>
         </View>
-        
+
+        <FlatList
+          data={taskList.filter(task => task.shift === 'Evening')} // Filtra tarefas com shift 'Morning'
+            keyExtractor={(item) => String(item.id)} // Usa o ID como chave
+            renderItem={({ item }) => (
+          <TaskItem
+            text={item.title}
+            colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
+            task={item}/>
+        )}
+      />
+        </View>
       </View>
       <NewTaskButton/>
     </View>
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 16,
   },
-  contentTasks: {
+  containerTasks: {
     flexGrow: 1, // Garante que o conteúdo ocupe o espaço restante
   },
   contentHeader: {

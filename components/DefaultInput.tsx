@@ -7,7 +7,7 @@ interface DefaultInputProps extends TextInputProps {
   placeholder: string;
 }
 
-export default function DefaultInput({ label, placeholder, ...rest }: DefaultInputProps) {
+export default function DefaultInput({ label, placeholder }: DefaultInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
 
@@ -31,7 +31,6 @@ export default function DefaultInput({ label, placeholder, ...rest }: DefaultInp
           onChangeText={setValue}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          {...rest}
         />
       </View>
     </View>

@@ -1,14 +1,17 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, Pressable, Dimensions, Animated } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, Dimensions, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
 import Entypo from '@expo/vector-icons/build/Entypo';
-import { ThemedText } from './ThemedText';
 import SimpleButton from '@/components/button/SimpleButton';
-import DefaultInput from './DefaultInput';
-import DefaultDropdown from './dropdown/DefaultDropdown';
 import { GestureHandlerRootView, PanGestureHandler, State } from 'react-native-gesture-handler';
-import { Link } from 'expo-router';
+import BackgroundGradientHorizontal from '@/components/background/BackgroundGradientHorizontal';
+import { ThemedText } from '@/components/ThemedText';
+import DefaultInput from '@/components/DefaultInput';
+import { router } from 'expo-router';
+import { Tasks } from './types/Tasks';
+import { useSearchParams } from 'expo-router/build/hooks';
+import DefaultDropdown from '@/components/dropdown/DefaultDropdown';
+import { updateTask } from '@/database/tasksRepository';
 
 interface ModalTaskItemProps {
     taskTitle: string;
@@ -18,9 +21,30 @@ interface ModalTaskItemProps {
     toggleModal: () => void;  // Recebe a função toggleModal para controlar o modal
 }
   
-export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTaskItemProps) {
+export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProps) {
     const translateY = new Animated.Value(0);
     const panRef = useRef(null);
+    const searchParams = useSearchParams(); // Retorna uma instância de URLSearchParams
+    const task = searchParams.get('task');
+
+  // Se o parâmetro task existir, faça o parse do JSON
+    const parsedTask: Tasks = task ? JSON.parse(decodeURIComponent(task as string)) : null;
+
+    const [taskState, setTaskState] = useState<Omit<Tasks, 'id'>>({
+        title: parsedTask?.title || '',  // Usa valor padrão caso parsedTask seja null
+        description: parsedTask?.description || '',
+        deadline: new Date().toISOString(),
+        priority: parsedTask?.priority || 'Low',  // Valor padrão 'Low' se parsedTask for null
+        shift: parsedTask?.shift || 'Morning',  // Valor padrão 'Morning' se parsedTask for null
+        difficulty: parsedTask?.difficulty || 'Easy',  // Valor padrão 'Easy'
+        duration: parsedTask?.duration || 'Normal',  // Valor padrão 'Normal'
+        note: parsedTask?.note || '',  // Valor padrão '' se parsedTask for null
+        status: parsedTask?.status || 0,
+    });
+      
+    const handleInputChange = (field: keyof Omit<Tasks, 'id'>, value: any) => {
+        setTaskState((prev) => ({ ...prev, [field]: value }));
+    };
 
     const onGestureEvent = (event: any) => {
       const { translationY } = event.nativeEvent;
@@ -32,15 +56,23 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
           const { translationY } = event.nativeEvent;
 
           if (translationY > 100) {
+
+            if (JSON.stringify(taskState) !== JSON.stringify(parsedTask)) {
+                // Se houver alteração, salva no banco de dados
+                updateTask({
+                    ...parsedTask, // Supondo que 'parsedTask' tenha o ID
+                    ...taskState,  // As alterações feitas pelo usuário
+                }).catch((error) => console.error('Erro ao salvar a tarefa:', error));
+            }
               Animated.timing(translateY, {
                   toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
                   duration: 300,
                   useNativeDriver: false,
               }).start(() => {
-                  toggleModal(); // Fecha o modal
+                router.push('/');
                   translateY.setValue(0); // Reseta para a próxima abertura
               });
-              toggleModal(); 
+
             } else {
                 Animated.spring(translateY, {
                     toValue: 0,
@@ -48,16 +80,9 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
                 }).start(); // Volta à posição original
             }
         }
-      }
+    }
 
         return (
-          <Modal
-            visible={isModalVisible}
-            animationType="slide"
-            transparent={true}
-            onRequestClose={toggleModal}
-            style={styles.taskContainer}
-          >
             <GestureHandlerRootView style={{ flex: 1 }}>
               <View style={styles.modalOverlay}>
                 <LinearGradient
@@ -67,7 +92,7 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
                 <Animated.View
                   style={[
                     styles.modalContainer,
-                    { transform: [{ translateY }] },
+                    { transform: [{ translateY }, { translateX: 0 }] },
                   ]}
                 >
                   <PanGestureHandler
@@ -77,35 +102,30 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
                     <View style={styles.titleContainer}>
                       <BackgroundGradientHorizontal style={styles.title}>
                         <View style={styles.dragIndicator} />
-                        <ThemedText type="defaultSemiBold">Finish the TaskMaster Wireframe</ThemedText>
+                        <ThemedText type="defaultSemiBold">{`${parsedTask.title}`}</ThemedText>
                       </BackgroundGradientHorizontal>
                     </View>
                   </PanGestureHandler>
                   <View style={styles.taskInfoContainer}>
-                    <DefaultInput label={'Title'} placeholder={'Teste'} />
-      
+
+                    <DefaultInput label={taskState.title} placeholder={`${parsedTask.title}`} />
                     <View style={styles.rowContainer}>
-                      {/* <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} /> */}
+                      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} value={`${parsedTask.priority}`} onValueChange={(value) => handleInputChange('priority', value)}/>
                       {/* Não precisa ser obrigatório */}
       
-                      {/* <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} /> */}
+                      <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} value={`${parsedTask.shift}`} onValueChange={(value) => handleInputChange('shift', value)} />
                     </View>
                     <View style={styles.rowContainer}>
-                      {/* <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} /> */}
-                      {/* Não precisa ser obrigatório */}
+                      <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} value={`${parsedTask.difficulty}`} onValueChange={(value) => handleInputChange('difficulty', value)} />
       
-                      {/* <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} /> */}
+                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/>
                     </View>
                     <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
-                    {/* <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']} />*/}
+                    {/* <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']}  value={task.status} onValueChange={(value) => handleInputChange('status', value)}/> */}
                   </View>
-                  <Link href="/" asChild>
-                    <Pressable style={StyleSheet.absoluteFill} />
-                  </Link>
                 </Animated.View>
               </View>
             </GestureHandlerRootView>
-          </Modal>
         );
       };
       
@@ -167,4 +187,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#1A1F25',
   }
 });
-

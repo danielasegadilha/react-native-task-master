@@ -23,6 +23,7 @@ export default function RootLayout() {
     Inter_900Black,
   });
 
+
   // Variável de controle para garantir inicialização única
   const hasInitializedDatabase = useRef(false);
 
@@ -45,6 +46,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="newTask" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'transparentModal', headerShown: false }}
+      />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
