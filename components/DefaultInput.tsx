@@ -1,39 +1,38 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TextInputProps, Platform } from 'react-native';
+import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
 import { ThemedText } from './ThemedText';
 
 interface DefaultInputProps extends TextInputProps {
   label: string;
-  placeholder: string;
 }
 
-export default function DefaultInput({ label, placeholder, ...rest }: DefaultInputProps) {
+export default function DefaultInput({
+  label,
+  placeholder,
+  value,
+  onChangeText,
+  ...rest
+}: DefaultInputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
-
-  const showPlaceholder = !isFocused && !value;
 
   return (
     <View style={styles.container}>
-      <ThemedText type="defaultBoldWhite" style={styles.label}>{label}</ThemedText>
-      <View>
-        {showPlaceholder && (
-          <ThemedText type="placeholder" style={styles.placeholder}>
-            {placeholder}
-          </ThemedText>
-        )}
-        <TextInput
-          style={[
-            styles.input,
-            isFocused && styles.inputFocused,
-          ]}
-          value={value}
-          onChangeText={setValue}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          {...rest}
-        />
-      </View>
+      <ThemedText type="defaultBoldWhite" style={styles.label}>
+        {label}
+      </ThemedText>
+      <TextInput
+        style={[
+          styles.input,
+          isFocused && styles.inputFocused,
+        ]}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        placeholder={placeholder}
+        placeholderTextColor="#A0A0A0"
+        value={value ?? ''} // Transforma null ou undefined em string vazia
+        onChangeText={onChangeText}
+        {...rest}
+      />
     </View>
   );
 }
@@ -56,10 +55,5 @@ const styles = StyleSheet.create({
   },
   inputFocused: {
     borderWidth: 0,
-  },
-  placeholder: {
-    position: 'absolute',
-    top: 15,
-    left: 15,
   },
 });
