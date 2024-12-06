@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
 import { ThemedText } from './ThemedText';
 
 interface DefaultInputProps extends TextInputProps {
-  label: string;
+  label: string | undefined;
 }
 
 export default function DefaultInput({

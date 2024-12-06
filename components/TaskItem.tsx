@@ -1,25 +1,21 @@
 // src/components/TaskItem.tsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { Task } from '@/constants/Task'
+import { View, StyleSheet, Pressable } from 'react-native';
 import { ThemedText } from './ThemedText';
-import { LinearGradient } from 'expo-linear-gradient';
-import BackgroundGradient from './background/BackgroundGradientHorizontal';
 import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
 import Entypo from '@expo/vector-icons/build/Entypo';
+import { Link } from 'expo-router';
+import { Tasks } from '@/app/types/Tasks';
 // import IconCheck from '@/assets/icons/IconCheck.svg';
 
 
 interface TaskItemProps {
-    // task: Task; // Aqui você usa a interface Task
+    task: Tasks; // Aqui você usa a interface Task
     colors: string[];
-    text: string;
-    toggleModal: () => void;
-    
 }
 
 // export default function TaskItem({ task }: TaskItemProps) {
-export default function TaskItem({colors: initialColors, text, toggleModal}: TaskItemProps) {
+export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
   const [colors, setColors] = useState(initialColors);
   const [isDefaultColors, setIsDefaultColors] = useState(true); // Controla o estado do ciclo
   const [isModalVisible, setModalVisible] = useState(false); // Adiciona o estado do modal
@@ -45,15 +41,15 @@ export default function TaskItem({colors: initialColors, text, toggleModal}: Tas
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={toggleModal}>
+      <Link href={`../modal?task=${task}`} style={styles.link}>
         <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
           <View style={styles.contentContainer}>
             <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
             <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
-            <ThemedText type="defaultMedium">{text}</ThemedText>
+            <ThemedText type="defaultMedium">{task.title}</ThemedText>
           </View>
         </BackgroundGradientHorizontal>
-      </Pressable>
+        </Link>
     </View>
   );
 }
@@ -66,6 +62,9 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 4,
     borderRadius: 8,
+  },
+  link: {
+    paddingTop: 4,
   },
   contentContainer: {
     flexDirection: 'row', // Coloca os componentes lado a lado

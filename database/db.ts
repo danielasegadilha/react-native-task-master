@@ -18,10 +18,10 @@ export const initDatabase = async (): Promise<void> => {
             title TEXT NOT NULL,
             description TEXT,
             deadline TEXT NOT NULL,
-            priority TEXT NOT NULL CHECK (priority IN ('Low', 'Medium', 'High')),
-            shift TEXT NOT NULL CHECK (shift IN ('Morning', 'Afternoon', 'Evening')),
-            difficulty TEXT NOT NULL CHECK (difficulty IN ('Hard', 'Medium', 'Easy')),
-            duration TEXT NOT NULL CHECK (duration IN ('Time-Consuming', 'Normal', 'Quickly')),
+            priority TEXT NOT NULL,
+            shift TEXT NOT NULL,
+            difficulty TEXT NOT NULL,
+            duration TEXT NOT NULL,
             note TEXT,
             status INTEGER NOT NULL CHECK (status IN (0, 1))
             );
