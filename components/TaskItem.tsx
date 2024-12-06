@@ -49,8 +49,10 @@ export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
       <Link href={`../modal?task=${taskParam}`} style={styles.link}>
         <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
           <View style={styles.contentContainer}>
-            <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
-            <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
+            <Pressable style={styles.squareContainer} onPress={handleSquarePress}>
+              <Pressable  onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
+              <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
+            </Pressable>
             <ThemedText type="defaultMedium">{task.title}</ThemedText>
           </View>
         </BackgroundGradientHorizontal>
@@ -64,8 +66,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   taskContainer: {
-    padding: 16,
-    marginBottom: 4,
+    paddingRight: 16,
     borderRadius: 8,
     width: '100%'
   },
@@ -75,13 +76,22 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'row', // Coloca os componentes lado a lado
     alignItems: 'center',
-    position: "relative"
+    position: "relative",
   },
   icon: {
-    left: -4, // Move para a esquerda (valores negativos)
-    top: -8,
+    left: 12, // Move para a esquerda (valores negativos)
+    top: 6,
     zIndex: 2,
     position: "absolute"
+  },
+  squareContainer: {
+    width: 60,
+    height: 48,
+    paddingLeft: 16,
+    paddingRight: 16,
+    display: 'flex',
+    flexDirection: 'row', // Coloca os componentes lado a lado
+    alignItems: 'center',
   },
   squareBase: {
     zIndex: 1,
