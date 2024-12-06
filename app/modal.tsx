@@ -111,17 +111,15 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
                     <DefaultInput label={taskState.title} placeholder={`${parsedTask.title}`} />
                     <View style={styles.rowContainer}>
                       <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} value={`${parsedTask.priority}`} onValueChange={(value) => handleInputChange('priority', value)}/>
-                      {/* Não precisa ser obrigatório */}
       
                       <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} value={`${parsedTask.shift}`} onValueChange={(value) => handleInputChange('shift', value)} />
                     </View>
                     <View style={styles.rowContainer}>
                       <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} value={`${parsedTask.difficulty}`} onValueChange={(value) => handleInputChange('difficulty', value)} />
-      
-                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-Consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/>
+                      <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'Pending']}  value={`${parsedTask.status}`} onValueChange={(value) => handleInputChange('status', value)}/>
+                      {/* <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-Consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/> */}
                     </View>
                     <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
-                    {/* <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']}  value={task.status} onValueChange={(value) => handleInputChange('status', value)}/> */}
                   </View>
                 </Animated.View>
               </View>

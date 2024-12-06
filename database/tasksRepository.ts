@@ -87,3 +87,35 @@ export const deleteTask = async (id: number): Promise<void> => {
       console.error('Erro ao deletar tarefa:', error);
     }
 };
+
+// Função para atualizar o status da tarefa para "finished"
+export const updateTaskStatusToFinished = async (id: number): Promise<void> => {
+  try {
+    await db.runAsync(
+      `UPDATE tasks 
+      SET status = ? 
+      WHERE id = ?;`,
+      ['Finished', id]
+    );
+    console.log('Status da tarefa atualizado para "finished"!');
+    await getTasks();
+  } catch (error) {
+    console.error('Erro ao atualizar status da tarefa para "finished":', error);
+  }
+};
+
+// Função para atualizar o status da tarefa para "pending"
+export const updateTaskStatusToPending = async (id: number): Promise<void> => {
+  try {
+    await db.runAsync(
+      `UPDATE tasks 
+      SET status = ? 
+      WHERE id = ?;`,
+      ['Pending', id]
+    );
+    console.log('Status da tarefa atualizado para "pending"!');
+    await getTasks();
+  } catch (error) {
+    console.error('Erro ao atualizar status da tarefa para "pending":', error);
+  }
+};

@@ -96,7 +96,7 @@ export default function NewTask() {
             onChangeText={(value) => handleInputChange('note', value)}
           />
         </View>
-        <View style={styles.rowContainer}>
+        <View style={[styles.buttonContainer, styles.rowContainer]}>
           <SimpleButton text="Cancel" href="/(tabs)" />
           <GradientButton
             text="Create"
@@ -113,6 +113,7 @@ export default function NewTask() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    marginBottom: 12, 
     flex: 1, 
     backgroundColor: '#1A1F25',
   },
@@ -134,4 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 16,
   },
+  buttonContainer: {
+    paddingBottom: 8,
+  }
 });
