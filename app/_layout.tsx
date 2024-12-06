@@ -52,8 +52,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="newTask" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'transparentModal', headerShown: false }}/>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'transparentModal', animation: 'none', headerShown: false }}/>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>

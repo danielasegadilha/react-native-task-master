@@ -11,8 +11,8 @@ interface DayPeriodControlProps {
 export default function DayPeriodControl({text}: DayPeriodControlProps) {
     return (
         <View style={styles.container}>
-            <ThemedText type="smallSemiBold">{text}</ThemedText>
-            <View style={styles.line}/>
+                <ThemedText type="smallSemiBold">{text}</ThemedText>
+                <View style={styles.line}/>
         </View>
     );
 }
@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'flex-end',
+        width: 80
     },
     line: {
-        flex: 1,
         height: 0.25,
         width: 8,
         backgroundColor: '#FFFFFF', 
