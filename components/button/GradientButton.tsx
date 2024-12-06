@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Dimensions } from 'react-native';
+import { View, StyleSheet, Pressable, Dimensions} from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '../ThemedText';
 import BackgroundGradientHorizontal from '../background/BackgroundGradientHorizontal';
@@ -25,6 +25,7 @@ export default function GradientButton({ text, href, onPress }: DefaultButtonPro
     };
 
   return (
+
         <BackgroundGradientHorizontal style={styles.addButton}>
             <Pressable onPress={handlePress}>
               <ThemedText type="defaultSemiBold">{text}</ThemedText>

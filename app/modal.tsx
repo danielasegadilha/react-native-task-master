@@ -86,7 +86,7 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
             <GestureHandlerRootView style={{ flex: 1 }}>
               <View style={styles.modalOverlay}>
                 <LinearGradient
-                  colors={['rgba(10, 21, 10, 0.6)', 'rgba(26, 31, 37, 0.2)']}
+                  colors={['rgba(20, 25, 30, 0.8)', 'rgba(20, 25, 30, 0.2)']}
                   style={styles.gradientBackground}
                 />
                 <Animated.View
