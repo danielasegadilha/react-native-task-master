@@ -56,8 +56,8 @@ export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
         <BackgroundGradientHorizontal colors={colors} style={styles.taskContainer}>
           <View style={styles.contentContainer}>
             <Pressable style={styles.squareContainer} onPress={handleSquarePress}>
-              <Pressable style={[styles.squareBase, dynamicSquareStyle]} />
-              <Entypo name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
+              <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]} />
+              <Entypo onPress={handleSquarePress}  name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]} />
             </Pressable>
             <ThemedText type="defaultMedium">{task.title}</ThemedText>
           </View>
