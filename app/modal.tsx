@@ -31,14 +31,14 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
     const parsedTask: Tasks = task ? JSON.parse(decodeURIComponent(task as string)) : null;
 
     const [taskState, setTaskState] = useState<Omit<Tasks, 'id'>>({
-        title: parsedTask?.title || '',  // Usa valor padrão caso parsedTask seja null
-        description: parsedTask?.description || '',
+        title: parsedTask?.title || "",  // Usa valor padrão caso parsedTask seja null
+        description: parsedTask?.description || "",
         deadline: new Date().toISOString(),
-        priority: parsedTask?.priority || 'Low',  // Valor padrão 'Low' se parsedTask for null
-        shift: parsedTask?.shift || 'Morning',  // Valor padrão 'Morning' se parsedTask for null
-        difficulty: parsedTask?.difficulty || 'Easy',  // Valor padrão 'Easy'
-        duration: parsedTask?.duration || 'Normal',  // Valor padrão 'Normal'
-        note: parsedTask?.note || '',  // Valor padrão '' se parsedTask for null
+        priority: parsedTask?.priority || "Low",  // Valor padrão 'Low' se parsedTask for null
+        shift: parsedTask?.shift || "Morning",  // Valor padrão 'Morning' se parsedTask for null
+        difficulty: parsedTask?.difficulty || "Easy",  // Valor padrão 'Easy'
+        duration: parsedTask?.duration || "Normal",  // Valor padrão 'Normal'
+        note: parsedTask?.note || "",  // Valor padrão '' se parsedTask for null
         status: parsedTask?.status || 0,
     });
       
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     width: '100%',
+    height: 50,
   },
   dragIndicator: {
     width: '10%', // Largura da linha
@@ -166,12 +167,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(43, 50, 58, 0.5)', // Cor da linha
     borderRadius: 2.5, // Borda arredondada para parecer uma alça
     alignSelf: 'center', // Centraliza horizontalmente
-    marginBottom: 16,
-    marginTop: 8, // Espaçamento abaixo (ajuste conforme necessário)
+    marginBottom: 8,
+
 },
   title: {
     alignItems: 'center',
-    paddingBottom: 16,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     justifyContent: 'center',
