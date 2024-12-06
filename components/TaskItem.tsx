@@ -47,7 +47,7 @@ export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
   const taskParam = encodeURIComponent(JSON.stringify(task));
 
   const handleTaskClick = () => {
-    router.push(`../modal?task=${taskParam}`);
+    router.push(`/modal?task=${taskParam}`);
   };
 
   return (
