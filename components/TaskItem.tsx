@@ -1,9 +1,7 @@
 // src/components/TaskItem.tsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { ThemedText } from './ThemedText';
-import { LinearGradient } from 'expo-linear-gradient';
-import BackgroundGradient from './background/BackgroundGradientHorizontal';
 import BackgroundGradientHorizontal from './background/BackgroundGradientHorizontal';
 import Entypo from '@expo/vector-icons/build/Entypo';
 import { Link } from 'expo-router';
@@ -14,13 +12,10 @@ import { Tasks } from '@/app/types/Tasks';
 interface TaskItemProps {
     task: Tasks; // Aqui você usa a interface Task
     colors: string[];
-    text: string;
-
-    
 }
 
 // export default function TaskItem({ task }: TaskItemProps) {
-export default function TaskItem({colors: initialColors, text, task}: TaskItemProps) {
+export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
   const [colors, setColors] = useState(initialColors);
   const [isDefaultColors, setIsDefaultColors] = useState(true); // Controla o estado do ciclo
   const [isModalVisible, setModalVisible] = useState(false); // Adiciona o estado do modal
@@ -53,7 +48,7 @@ export default function TaskItem({colors: initialColors, text, task}: TaskItemPr
           <View style={styles.contentContainer}>
             <Pressable onPress={handleSquarePress} style={[styles.squareBase, dynamicSquareStyle]}/>
             <Entypo onPress={handleSquarePress} name="check" size={34} color="#0CA402" style={[styles.icon, dynamicCheckStyle]}/>
-            <ThemedText type="defaultMedium">{text}</ThemedText>
+            <ThemedText type="defaultMedium">{task.title}</ThemedText>
           </View>
         </BackgroundGradientHorizontal>
         </Link>

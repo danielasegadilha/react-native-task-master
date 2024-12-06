@@ -14,14 +14,14 @@ import { Tasks } from './types/Tasks';
 export default function NewTask() {
 
   const [task, setTask] = useState<Omit<Tasks, 'id'>>({
-    title: '',
+    title: undefined,
     description: '',
     deadline: new Date().toISOString(),
     priority: 'Low',
     shift: 'Morning',
     difficulty: 'Easy',
     duration: 'Normal',
-    note: '',
+    note: undefined,
     status: 0,
   });
 
@@ -37,33 +37,7 @@ export default function NewTask() {
       console.error('Erro ao criar tarefa:', error);
     }
   };
-  
-  // const taskDatabase = useTasksDatabase()
-
-
-  // const [id, setId] = useState<Number>();
-  // const [title, setTitle] = useState<string>('');
-  // const [description, setDescription] = useState<string>('');
-  // const [deadline, setDeadline] = useState<string>('');
-  // const [priority, setPriority] = useState<string>(''); 
-  // const [status, setStatus] = useState<0 | 1>(0);
-
-  // async function createTask() { 
-  //   const newTask: Omit<Task, 'id' | 'status'> = {
-  //     title,
-  //     description,
-  //     deadline,
-  //     priority,
-  //   }
-
-  //   try {
-  //     const response = await taskDatabase.create(newTask)
-  //   } catch (error) {
-  //     throw error
-  //   }
-
-  //  }
-  
+    
   return (
     <View style={styles.container}>
       <View style={styles.contentHeader}>

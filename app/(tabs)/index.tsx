@@ -1,16 +1,13 @@
 import DayPeriodControl from "@/components/DayPeriodControl";
 import TaskItem from "@/components/TaskItem";
 import { ThemedText } from "@/components/ThemedText";
-import { Link, useRouter } from "expo-router";
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Dimensions, FlatList } from 'react-native';
-import NewTask from "../newTask";
+import { View, StyleSheet, FlatList } from 'react-native';
 import NewTaskButton from "@/components/button/NewTaskButton";
 import DefaultButton from "@/components/button/DefaultButton";
 import WeekDayButton from "@/components/button/WeekDayButton";
 import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import ModalTaskItem from "@/components/ModalTaskItem";
 import { Tasks, taskList } from "../types/Tasks";
 
 export default function HomeScreen() {
@@ -46,7 +43,6 @@ export default function HomeScreen() {
             keyExtractor={(item) => String(item.id)} // Usa o ID como chave
             renderItem={({ item }) => (
             <TaskItem
-            text={item.title}
             colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
             task={item}/>
         )}
@@ -60,7 +56,6 @@ export default function HomeScreen() {
             keyExtractor={(item) => String(item.id)} // Usa o ID como chave
             renderItem={({ item }) => (
           <TaskItem
-            text={item.title}
             colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
             task={item}/>
         )}
@@ -75,7 +70,6 @@ export default function HomeScreen() {
             keyExtractor={(item) => String(item.id)} // Usa o ID como chave
             renderItem={({ item }) => (
           <TaskItem
-            text={item.title}
             colors={['#FFDF95', '#FECD71', '#FCA521']} // Ajuste de cores conforme necessário
             task={item}/>
         )}
