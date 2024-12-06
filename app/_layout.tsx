@@ -2,7 +2,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts, Roboto_100Thin, Roboto_100Thin_Italic, Roboto_300Light, Roboto_300Light_Italic, Roboto_400Regular, Roboto_400Regular_Italic, Roboto_500Medium, Roboto_500Medium_Italic, Roboto_700Bold, Roboto_700Bold_Italic, Roboto_900Black, Roboto_900Black_Italic} from '@expo-google-fonts/roboto';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -32,11 +32,14 @@ export default function RootLayout() {
 
   // Variável de controle para garantir inicialização única
   const hasInitializedDatabase = useRef(false);
+  const [dbInitialized, setDbInitialized] = useState(false);
 
   useEffect(() => {
     if (!hasInitializedDatabase.current) {
       console.log('Chamando initDatabase');
-      initDatabase();
+      initDatabase().then(() => {
+        setDbInitialized(true); // Marca o banco como carregado
+      });
       hasInitializedDatabase.current = true; // Marca como inicializado
     }
     if (loaded) {
@@ -44,8 +47,8 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded) {
-    
+  if (!loaded || !dbInitialized) {
+    return null; // Exibe uma tela de carregamento ou nada enquanto o banco não está pronto
   }
 
   return (
