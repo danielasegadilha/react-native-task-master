@@ -25,25 +25,21 @@ export default function GradientButton({ text, href, onPress }: DefaultButtonPro
     };
 
   return (
-    <View style={styles.container}>
         <BackgroundGradientHorizontal style={styles.addButton}>
-            <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
+            <Pressable onPress={handlePress}>
               <ThemedText type="defaultSemiBold">{text}</ThemedText>
             </Pressable>
         </BackgroundGradientHorizontal>
-    </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   addButton: {
-    padding: 16,
+    flex: 1,
     borderRadius: 16,
-    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 16,
   },
 });

@@ -20,7 +20,7 @@ export default function DefaultButton({ text, iconName, href }: DefaultButtonPro
 
   return (
     <View style={styles.addButton}>
-        <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
+        <Pressable onPress={handlePress}>
             <View style={styles.pressable}>
               <ThemedText type="defaultWhite">{text}</ThemedText>
               <MaterialCommunityIcons name={iconName} size={20} color="#B2B2B1" style={styles.icon}/>

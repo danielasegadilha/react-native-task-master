@@ -20,7 +20,7 @@ export default function DefaultButton({ text, href }: DefaultButtonProps) {
 
   return (
     <View style={styles.addButton}>
-        <Pressable onPress={handlePress} style={{ pointerEvents: 'auto' }}>
+        <Pressable onPress={handlePress}>
             <ThemedText type="defaultMediumWhite">{text}</ThemedText>
         </Pressable>
     </View>
