@@ -9,6 +9,7 @@ import WeekDayButton from "@/components/button/WeekDayButton";
 import MiniDropdown from "@/components/dropdown/MiniDropdown";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tasks, taskList } from "../types/Tasks";
+import TasksPerDay from "@/components/TasksPerDay";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -35,7 +36,7 @@ export default function HomeScreen() {
       <View style={styles.containerTasks}>
         <View>
           <View style={styles.contentHeader}>
-            <ThemedText type="small">6 Tasks</ThemedText>
+            <TasksPerDay text={taskList.length.toString()}></TasksPerDay>
             <DayPeriodControl text={'Morning'}/>
           </View>
           <FlatList
