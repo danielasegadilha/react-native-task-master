@@ -118,7 +118,7 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
                     <View style={styles.rowContainer}>
                       <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} value={`${parsedTask.difficulty}`} onValueChange={(value) => handleInputChange('difficulty', value)} />
       
-                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/>
+                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-Consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/>
                     </View>
                     <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
                     {/* <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']}  value={task.status} onValueChange={(value) => handleInputChange('status', value)}/> */}
