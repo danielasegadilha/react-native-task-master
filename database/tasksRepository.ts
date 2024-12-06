@@ -97,10 +97,10 @@ export const updateTaskStatusToFinished = async (id: number): Promise<void> => {
       WHERE id = ?;`,
       ['Finished', id]
     );
-    console.log('Status da tarefa atualizado para "finished"!');
+    console.log('Status da tarefa atualizado para "Finished"');
     await getTasks();
   } catch (error) {
-    console.error('Erro ao atualizar status da tarefa para "finished":', error);
+    console.error('Erro ao atualizar status da tarefa para "Finished":', error);
   }
 };
 
@@ -113,9 +113,9 @@ export const updateTaskStatusToPending = async (id: number): Promise<void> => {
       WHERE id = ?;`,
       ['Pending', id]
     );
-    console.log('Status da tarefa atualizado para "pending"!');
+    console.log('Status da tarefa atualizado para "Pending"');
     await getTasks();
   } catch (error) {
-    console.error('Erro ao atualizar status da tarefa para "pending":', error);
+    console.error('Erro ao atualizar status da tarefa para "Pending":', error);
   }
 };

@@ -6,6 +6,7 @@ import BackgroundGradientHorizontal from './background/BackgroundGradientHorizon
 import Entypo from '@expo/vector-icons/build/Entypo';
 import { Link } from 'expo-router';
 import { Tasks } from '@/app/types/Tasks';
+import { updateTaskStatusToFinished, updateTaskStatusToPending } from '@/database/tasksRepository';
 // import IconCheck from '@/assets/icons/IconCheck.svg';
 
 
@@ -23,8 +24,10 @@ export default function TaskItem({colors: initialColors, task}: TaskItemProps) {
   const handleSquarePress = () => {
     if (isDefaultColors) {
       setColors(['#BDFF9B', '#62CC7B']); // Define as cores verdes
+      updateTaskStatusToFinished(task.id)
     } else {
       setColors(initialColors); // Retorna às cores iniciais
+      updateTaskStatusToPending(task.id)
     }
     setIsDefaultColors(!isDefaultColors); // Alterna o estado
   };;

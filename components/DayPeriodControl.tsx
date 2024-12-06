@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        width: 80
+        width: 100
     },
     line: {
         height: 0.25,

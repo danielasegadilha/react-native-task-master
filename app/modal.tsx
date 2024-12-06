@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, Dimensions, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, Dimensions, Animated, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Entypo from '@expo/vector-icons/build/Entypo';
 import SimpleButton from '@/components/button/SimpleButton';
@@ -39,9 +39,27 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
         difficulty: parsedTask?.difficulty || "Easy",  // Valor padrão 'Easy'
         duration: parsedTask?.duration || "Normal",  // Valor padrão 'Normal'
         note: parsedTask?.note || "",  // Valor padrão '' se parsedTask for null
-        status: parsedTask?.status || 0,
+        status: parsedTask?.status || "Pending",
     });
-      
+    
+    // useEffect(() => {
+    //   if (parsedTask) {
+    //     setTaskState({
+    //       title: parsedTask.title || "",
+    //       description: parsedTask.description || "",
+    //       deadline: parsedTask.deadline || new Date().toISOString(),
+    //       priority: parsedTask.priority || "Low",
+    //       shift: parsedTask.shift || "Morning",
+    //       difficulty: parsedTask.difficulty || "Easy",
+    //       duration: parsedTask.duration || "Normal",
+    //       note: parsedTask.note || "",
+    //       status: parsedTask.status || 'Pending', // Garantir que o status seja atualizado
+    //     });
+
+    //   }
+    // }, [parsedTask]);
+
+
     const handleInputChange = (field: keyof Omit<Tasks, 'id'>, value: any) => {
         setTaskState((prev) => ({ ...prev, [field]: value }));
     };
@@ -57,13 +75,23 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
 
           if (translationY > 100) {
 
-            if (JSON.stringify(taskState) !== JSON.stringify(parsedTask)) {
-                // Se houver alteração, salva no banco de dados
-                updateTask({
-                    ...parsedTask, // Supondo que 'parsedTask' tenha o ID
-                    ...taskState,  // As alterações feitas pelo usuário
-                }).catch((error) => console.error('Erro ao salvar a tarefa:', error));
-            }
+            if (
+              taskState.title !== parsedTask?.title ||
+              taskState.description !== parsedTask?.description ||
+              taskState.deadline !== parsedTask?.deadline ||
+              taskState.priority !== parsedTask?.priority ||
+              taskState.shift !== parsedTask?.shift ||
+              taskState.difficulty !== parsedTask?.difficulty ||
+              taskState.duration !== parsedTask?.duration ||
+              taskState.note !== parsedTask?.note ||
+              taskState.status !== parsedTask?.status
+          ) {
+              // Salvar a tarefa no banco de dados
+              updateTask({
+                  ...parsedTask,  // Supondo que parsedTask tenha o ID
+                  ...taskState,   // As alterações feitas pelo usuário
+              }).catch((error) => console.error('Erro ao salvar a tarefa:', error));
+          }
               Animated.timing(translateY, {
                   toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
                   duration: 300,
@@ -84,6 +112,7 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
 
         return (
             <GestureHandlerRootView style={{ flex: 1 }}>
+              
               <View style={styles.modalOverlay}>
                 <LinearGradient
                   colors={['rgba(20, 25, 30, 0.8)', 'rgba(20, 25, 30, 0.2)']}
@@ -100,27 +129,27 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
                     onHandlerStateChange={onHandlerStateChange} ref={panRef}
                   >
                     <View style={styles.titleContainer}>
-                      <BackgroundGradientHorizontal style={styles.title}>
+                      <BackgroundGradientHorizontal style={styles.title} colors={taskState.status === 'Finished' ? ['#BDFF9B', '#62CC7B'] : ['#FFDF95', '#FECD71', '#FCA521']}>
                         <View style={styles.dragIndicator} />
                         <ThemedText type="defaultSemiBold">{`${parsedTask.title}`}</ThemedText>
                       </BackgroundGradientHorizontal>
                     </View>
                   </PanGestureHandler>
+                  <ScrollView showsVerticalScrollIndicator={false}>
                   <View style={styles.taskInfoContainer}>
-
-                    <DefaultInput label={taskState.title} placeholder={`${parsedTask.title}`} />
+                    <DefaultInput label={taskState.title} placeholder={taskState.title} />
                     <View style={styles.rowContainer}>
-                      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} value={`${parsedTask.priority}`} onValueChange={(value) => handleInputChange('priority', value)}/>
-      
-                      <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} value={`${parsedTask.shift}`} onValueChange={(value) => handleInputChange('shift', value)} />
+                      <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'Pending']}  value={taskState.status} onValueChange={(value) => handleInputChange('status', value)}/>
+                      <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} value={taskState.shift} onValueChange={(value) => handleInputChange('shift', value)} />
                     </View>
                     <View style={styles.rowContainer}>
-                      <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} value={`${parsedTask.difficulty}`} onValueChange={(value) => handleInputChange('difficulty', value)} />
-                      <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'Pending']}  value={`${parsedTask.status}`} onValueChange={(value) => handleInputChange('status', value)}/>
+                      <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} value={taskState.difficulty} onValueChange={(value) => handleInputChange('difficulty', value)} />
+                      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} value={taskState.priority} onValueChange={(value) => handleInputChange('priority', value)}/>
                       {/* <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-Consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/> */}
                     </View>
                     <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
                   </View>
+                  </ScrollView>
                 </Animated.View>
               </View>
             </GestureHandlerRootView>
@@ -147,6 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   modalContainer: {
     width: '100%',
     height: '85%',
@@ -158,6 +188,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '100%',
     height: 50,
+    marginBottom: 20,
   },
   dragIndicator: {
     width: '10%', // Largura da linha
@@ -180,7 +211,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   taskInfoContainer: {
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
     width: '100%',
     backgroundColor: '#1A1F25',
   }

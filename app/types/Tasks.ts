@@ -8,7 +8,7 @@ export interface Tasks {
   difficulty: 'Hard' | 'Medium' | 'Easy';
   duration: 'Time-Consuming' | 'Normal' | 'Quickly';
   note: string | undefined;
-  status: 0 | 1;
+  status: string;
 }
 
 export let taskList: Tasks[] = [];

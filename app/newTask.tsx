@@ -22,7 +22,7 @@ export default function NewTask() {
     difficulty: 'Easy',
     duration: 'Normal',
     note: undefined,
-    status: 0,
+    status: 'Pending',
   });
 
   const handleInputChange = (field: keyof Omit<Tasks, 'id'>, value: any) => {

@@ -6,11 +6,10 @@ export const db = SQLite.openDatabaseSync('tasks.db');
 export const initDatabase = async (): Promise<void> => {
     try {
 
-
-        await db.execAsync(`
-            DROP TABLE IF EXISTS tasks;
-        `);
-        console.log('Tabela antiga removida com sucesso.');
+        // await db.execAsync(`
+        //     DROP TABLE IF EXISTS tasks;
+        // `);
+        // console.log('Tabela antiga removida com sucesso.');
 
         await db.execAsync(`
             CREATE TABLE IF NOT EXISTS tasks (
