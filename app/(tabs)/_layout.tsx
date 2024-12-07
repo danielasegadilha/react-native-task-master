@@ -1,9 +1,6 @@
-import { Slot, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { SQLiteProvider } from 'expo-sqlite';
-// import { initializeDatabase } from '../database/initializeDatabase';
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TabLayout() {

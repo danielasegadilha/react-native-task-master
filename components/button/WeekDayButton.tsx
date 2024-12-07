@@ -29,7 +29,7 @@ export default function WeekDayButton() {
       <ThemedText type="smallSemiBold" style={styles.title}>{title}</ThemedText>
       <BackgroundGradientVertical style={styles.circleContainer}>
         <Pressable style={styles.circle} onPress={handlePress}>
-          <ThemedText type="smallXBoldBlack">{formattedMonth}</ThemedText> 
+          <ThemedText type="smallXBoldBlack" style={styles.text}>{formattedMonth}</ThemedText> 
           <ThemedText type="largeBold">{dayOfMonth}</ThemedText>  
         </Pressable>
       </BackgroundGradientVertical>
@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    width: '100%',
+    textAlign: 'center'
+  }
 });
 
 

@@ -8,6 +8,7 @@ import SimpleButton from '@/components/button/SimpleButton';
 import DefaultInput from './DefaultInput';
 import DefaultDropdown from './dropdown/DefaultDropdown';
 import { GestureHandlerRootView, PanGestureHandler, State } from 'react-native-gesture-handler';
+import { Link } from 'expo-router';
 
 interface ModalTaskItemProps {
     taskTitle: string;
@@ -28,17 +29,17 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
 
     const onHandlerStateChange = (event: any) => {
         if (event.nativeEvent.state === State.END) {
-          // const { translationY } = event.nativeEvent;
+          const { translationY } = event.nativeEvent;
 
-          // if (translationY > 100) {
-          //     Animated.timing(translateY, {
-          //         toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
-          //         duration: 300,
-          //         useNativeDriver: false,
-          //     }).start(() => {
-          //         toggleModal(); // Fecha o modal
-          //         translateY.setValue(0); // Reseta para a próxima abertura
-          //     });
+          if (translationY > 100) {
+              Animated.timing(translateY, {
+                  toValue: Dimensions.get('window').height, // Sai pela parte inferior da tela
+                  duration: 300,
+                  useNativeDriver: false,
+              }).start(() => {
+                  toggleModal(); // Fecha o modal
+                  translateY.setValue(0); // Reseta para a próxima abertura
+              });
               toggleModal(); 
             } else {
                 Animated.spring(translateY, {
@@ -47,7 +48,7 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
                 }).start(); // Volta à posição original
             }
         }
-    
+      }
 
         return (
           <Modal
@@ -84,20 +85,23 @@ export default function ModalTaskItem({ isModalVisible, toggleModal }: ModalTask
                     <DefaultInput label={'Title'} placeholder={'Teste'} />
       
                     <View style={styles.rowContainer}>
-                      <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} />
+                      {/* <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} /> */}
                       {/* Não precisa ser obrigatório */}
       
-                      <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} />
+                      {/* <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} /> */}
                     </View>
                     <View style={styles.rowContainer}>
-                      <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} />
+                      {/* <DefaultDropdown label={'Difficulty'} placeholder={'Select difficulty'} options={["Hard", "Medium", "Easy"]} /> */}
                       {/* Não precisa ser obrigatório */}
       
-                      <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} />
+                      {/* <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-consuming", "Normal", "Quickly"]} /> */}
                     </View>
                     <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
-                    <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']} />
+                    {/* <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'To do']} />*/}
                   </View>
+                  <Link href="/" asChild>
+                    <Pressable style={StyleSheet.absoluteFill} />
+                  </Link>
                 </Animated.View>
               </View>
             </GestureHandlerRootView>
