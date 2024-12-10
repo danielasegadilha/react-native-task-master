@@ -25,14 +25,14 @@ export const addTask = async (task: Omit<Tasks, 'id'>): Promise<void> => {
       (title, description, deadline, priority, shift, difficulty, duration, note, status) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`,
       [
-        task.title,
+        task.title ?? null,
         task.description,
         task.deadline,
         task.priority,
         task.shift,
         task.difficulty,
         task.duration,
-        task.note,
+        task.note ?? null,
         task.status
       ]
     );
@@ -58,14 +58,14 @@ export const updateTask = async (task: Tasks): Promise<void> => {
           status = ? 
       WHERE id = ?;`,
       [
-        task.title,
+        task.title  ?? null,
         task.description,
         task.deadline,
         task.priority,
         task.shift,
         task.difficulty,
         task.duration,
-        task.note,
+        task.note  ?? null,
         task.status,
         task.id
       ]

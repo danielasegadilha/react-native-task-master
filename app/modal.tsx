@@ -137,7 +137,7 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
                   </PanGestureHandler>
                   <ScrollView showsVerticalScrollIndicator={false}>
                   <View style={styles.taskInfoContainer}>
-                    <DefaultInput label={taskState.title} placeholder={taskState.title} />
+                    <DefaultInput label={'Tittle'} placeholder={taskState.title} value={taskState.title} onChangeText={(value) => handleInputChange('title', value)}/>
                     <View style={styles.rowContainer}>
                       <DefaultDropdown label={'Status'} placeholder={'Select status'} options={['Finished', 'Pending']}  value={taskState.status} onValueChange={(value) => handleInputChange('status', value)}/>
                       <DefaultDropdown label={'Shift'} placeholder={'Select shift'} options={["Morning", "Afternoon", "Evening"]} value={taskState.shift} onValueChange={(value) => handleInputChange('shift', value)} />
@@ -147,7 +147,7 @@ export default function Modal({ isModalVisible, toggleModal }: ModalTaskItemProp
                       <DefaultDropdown label={'Priority'} placeholder={'Select priority'} options={["Low", "Medium", "High"]} value={taskState.priority} onValueChange={(value) => handleInputChange('priority', value)}/>
                       {/* <DefaultDropdown label={'Duration'} placeholder={'Select duration'} options={["Time-Consuming", "Normal", "Quickly"]} value={`${parsedTask.duration}`} onValueChange={(value) => handleInputChange('duration', value)}/> */}
                     </View>
-                    <DefaultInput label={'Notes'} placeholder={'Enter notes'} />
+                    <DefaultInput label={'Notes'} placeholder={'Enter notes'} value={taskState.note} onChangeText={(value) => handleInputChange('note', value)}/>
                   </View>
                   </ScrollView>
                 </Animated.View>
